@@ -3,10 +3,69 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:BachelorDiploma"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
+
+
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid>
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <iconPacks:PackIconBootstrapIcons Kind="DashCircle"
+                                                      VerticalAlignment="Center"
+                                                      Style="{StaticResource ManageIconsThemeBootstrapIcons}"
+                                                      MouseDown="PackIconBootstrapIcons_MouseDown"/>
+                    <iconPacks:PackIconEntypo Kind="CircleWithCross"                                   
+                                                      VerticalAlignment="Center"
+                                                      Style="{StaticResource ManageIconsThemeEntypo}"
+                                                      MouseDown="PackIconEntypo_MouseDown"/>
+                </StackPanel>
+            </Grid>
+
+            
+            
+            
+            <Border Grid.Row="1">
+                <TabControl 
+                        Margin="0,0,10,10"                      
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        TabStripPlacement="Left"
+                        FontSize="14">
+                    <TabItem Header="Main"
+                        Style="{StaticResource TabItemTheme}">
+                        <Grid Background="Black"/>
+                    </TabItem>
+                    <TabItem Header="NONONO"
+                         Style="{StaticResource TabItemTheme}">
+                        <Grid Background="Aqua"/>
+                    </TabItem>
+                </TabControl>
+            </Border>
+            
+        </Grid>
+    </Border>
 </Window>
