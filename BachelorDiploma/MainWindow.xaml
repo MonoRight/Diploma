@@ -37,7 +37,8 @@
                     <iconPacks:PackIconBootstrapIcons Kind="DashCircle"
                                                       VerticalAlignment="Center"
                                                       Style="{StaticResource ManageIconsThemeBootstrapIcons}"
-                                                      MouseDown="PackIconBootstrapIcons_MouseDown"/>
+                                                      MouseDown="PackIconBootstrapIcons_MouseDown"
+                                                      />
                     <iconPacks:PackIconEntypo Kind="CircleWithCross"                                   
                                                       VerticalAlignment="Center"
                                                       Style="{StaticResource ManageIconsThemeEntypo}"
