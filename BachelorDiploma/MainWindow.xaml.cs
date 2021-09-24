@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notifications.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,18 @@ namespace BachelorDiploma
     /// </summary>
     public partial class MainWindow : Window
     {
+        NotificationManager notificationManager = new NotificationManager();
         public MainWindow()
         {
             InitializeComponent();
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "Recommended to have 8GB of RAM",
+                Message = "Since this program performs a lot of mathematical operations, the amount of RAM affects the results.",
+                Type = NotificationType.Information
+            },
+                expirationTime: new TimeSpan(0, 0, 10)
+            );
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

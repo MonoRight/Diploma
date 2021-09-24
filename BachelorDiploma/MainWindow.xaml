@@ -69,7 +69,7 @@
                     <TabItem Header="Main"
                         Style="{StaticResource TabItemTheme}">
                         <Grid Background="Black">
-
+                            
                         </Grid>
                     </TabItem>
                     <TabItem Header="Additional information"
@@ -81,6 +81,12 @@
                     <TabItem Header="Settings"
                              Style="{StaticResource TabItemTheme}">
                         <Grid Background="Yellow">
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Statistics"
+                             Style="{StaticResource TabItemTheme}">
+                        <Grid Background="Gray">
 
                         </Grid>
                     </TabItem>
