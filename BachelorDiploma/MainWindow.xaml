@@ -31,6 +31,15 @@
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
+                <TextBlock Text="VOLUME"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontSize="25"
+                           Margin="30,0,0,0"
+                           FontFamily="Montserrat"/>
+                
+                
                 <StackPanel Grid.Column="1" 
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
@@ -44,13 +53,14 @@
                                                       Style="{StaticResource ManageIconsThemeEntypo}"
                                                       MouseDown="PackIconEntypo_MouseDown"/>
                 </StackPanel>
+                
             </Grid>
 
             
             
             
             <Border Grid.Row="1">
-                <TabControl 
+                <TabControl
                         Margin="0,0,10,10"                      
                         Background="Transparent"
                         BorderBrush="Transparent"
@@ -58,15 +68,26 @@
                         FontSize="14">
                     <TabItem Header="Main"
                         Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Black"/>
+                        <Grid Background="Black">
+
+                        </Grid>
                     </TabItem>
-                    <TabItem Header="NONONO"
+                    <TabItem Header="Additional information"
                          Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Aqua"/>
+                        <Grid Background="Aqua">
+                            
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Settings"
+                             Style="{StaticResource TabItemTheme}">
+                        <Grid Background="Yellow">
+
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Border>
-            
+
         </Grid>
+
     </Border>
 </Window>

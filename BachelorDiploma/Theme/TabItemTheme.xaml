@@ -13,8 +13,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border Name="Border"
+                        <Grid Name="GridTabItem">
+                            <Border Name="BorderTabItem"
                                     CornerRadius="10,10,10,10" 
                                     Height="50">
                                 <ContentPresenter
@@ -26,7 +26,11 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#22202f"/>
+                                <Setter TargetName="BorderTabItem" Property="Background" Value="#22202f"/>
+                                <Setter Property="Foreground" Value="#FFEC40"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FFEC40"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
