@@ -18,11 +18,10 @@
     <Border Background="#272537"
             CornerRadius="20">
         <Grid>
-
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="93*"/>
+                <RowDefinition Height="169*"/>
             </Grid.RowDefinitions>
 
             <Grid>
@@ -38,8 +37,8 @@
                            FontSize="25"
                            Margin="30,0,0,0"
                            FontFamily="Montserrat"/>
-                
-                
+
+
                 <StackPanel Grid.Column="1" 
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
@@ -53,41 +52,85 @@
                                                       Style="{StaticResource ManageIconsThemeEntypo}"
                                                       MouseDown="PackIconEntypo_MouseDown"/>
                 </StackPanel>
-                
+
             </Grid>
 
-            
-            
-            
-            <Border Grid.Row="1">
+            <Border Margin="0,75,0,0" Grid.RowSpan="3">
                 <TabControl
-                        Margin="0,0,10,10"                      
+                        Margin="0,0,0,0"                      
                         Background="Transparent"
                         BorderBrush="Transparent"
                         TabStripPlacement="Left"
                         FontSize="14">
-                    <TabItem Header="Main"
+                    <TabItem Header="Головна"
                         Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Black">
-                            
+
+                        <Grid>
+                            <Border Style="{StaticResource TabControlMainBorderTheme}">
+                                <Grid Background="Transparent">
+                                    <Border CornerRadius="10" Background="GreenYellow" Margin="10,10,10,330">
+                                        <StackPanel x:Name="DragStackPanel" 
+                                                        Style="{StaticResource DragStackPanelTheme}"
+                                                        Drop="StackPanelDragDrop" 
+                                                        DragEnter="StackPanelDragEnter" 
+                                                        DragLeave="StackPanelDragLeave"
+                                                        MouseDown="StackPanelMouseDown">
+                                            <Border Background="Transparent" 
+                                                    CornerRadius="25" 
+                                                    Height="162" 
+                                                    Width="660" 
+                                                    Margin="0,9,0,0"                                                  
+                                                    BorderThickness="10"
+                                                    >
+                                                <Border.BorderBrush>
+                                                    <VisualBrush>
+                                                        <VisualBrush.Visual>
+                                                            <Rectangle StrokeDashArray="5.3 4" Stroke="Green"
+                                                                StrokeThickness="5"
+                                                                RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                                                RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                                                Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                                                Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Border.BorderBrush>
+                                                <Image x:Name="FileImage" Source="Images/file.png" Margin="27.4,17.2,27.4,17.2"/>
+                                            </Border>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" 
+                                             Margin="277,229,185.8,250.2"/>
+                                    <Label Content="Назва" HorizontalAlignment="Left" Margin="128,229,0,0" VerticalAlignment="Top"/>
+
+                                </Grid>
+                            </Border>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Additional information"
+                    <TabItem Header="Додаткова інформація"
                          Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Aqua">
-                            
+                        <Grid>
+                            <Border Style="{StaticResource TabControlMainBorderTheme}" >
+                                
+                            </Border>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Settings"
+                    <TabItem Header="Налаштування"
                              Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Yellow">
+                        <Grid>
+                            <Border Style="{StaticResource TabControlMainBorderTheme}" >
 
+                            </Border>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Statistics"
+                    <TabItem Header="Статистика"
                              Style="{StaticResource TabItemTheme}">
-                        <Grid Background="Gray">
+                        <Grid>
+                            <Border Style="{StaticResource TabControlMainBorderTheme}" >
 
+                            </Border>
                         </Grid>
                     </TabItem>
                 </TabControl>

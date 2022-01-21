@@ -4,11 +4,14 @@
              xmlns:local="clr-namespace:BachelorDiploma"  
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/TabItemTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ManageIconsTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TabControlMainBorderTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/DragStackPanelTheme.xaml"/>
+                <ResourceDictionary Source="Theme/LabelTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
