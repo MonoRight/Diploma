@@ -68,7 +68,7 @@
                         <Grid>
                             <Border Style="{StaticResource TabControlMainBorderTheme}">
                                 <Grid Background="Transparent">
-                                    <Border CornerRadius="10" Background="GreenYellow" Margin="10,10,10,330">
+                                    <Border CornerRadius="40" Background="GreenYellow" Margin="10,10,10,330">
                                         <StackPanel x:Name="DragStackPanel" 
                                                         Style="{StaticResource DragStackPanelTheme}"
                                                         Drop="StackPanelDragDrop" 
@@ -80,8 +80,7 @@
                                                     Height="162" 
                                                     Width="660" 
                                                     Margin="0,9,0,0"                                                  
-                                                    BorderThickness="10"
-                                                    >
+                                                    BorderThickness="10">
                                                 <Border.BorderBrush>
                                                     <VisualBrush>
                                                         <VisualBrush.Visual>
@@ -99,11 +98,57 @@
                                         </StackPanel>
                                     </Border>
 
-                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                    <Border Margin="10,200,10,10" 
+                                            CornerRadius="25" 
+                                            BorderBrush="Black" 
+                                            BorderThickness="2">
+                                        <Grid >
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Назва" Margin="308,14,0,265.4"/>
+                                            <TextBox x:Name="NameTextBox" Style="{StaticResource TextBoxTheme}"
                                              Height="40"
-                                             Width="250" 
-                                             Margin="277,229,185.8,250.2"/>
-                                    <Label Content="Назва" HorizontalAlignment="Left" Margin="128,229,0,0" VerticalAlignment="Top"/>
+                                             Width="250" Margin="379,6,60.6,260.4"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Номінальний об'єм (м³)" Margin="185,58,0,221.4" Width="184"/>
+                                            <TextBox x:Name="NominalVolumeTextBox" Style="{StaticResource TextBoxTheme}"
+                                                     Height="40"
+                                                     Width="250" 
+                                                     Margin="379,51,60.6,215.4"
+                                                     Text="0.0"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Гранична абсолютна висота наповнення (м)" Margin="38,103,0,176.4" Width="328"/>
+                                            <TextBox x:Name="FillingHeightTextBox" Style="{StaticResource TextBoxTheme}"
+                                                     Height="40"
+                                                     Width="250" 
+                                                     Margin="379,96,60.6,170.4"
+                                                     Text="0.0"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Висота &quot;мертвого&quot; залишку (м)" Margin="130,148,0,131.4" Width="238"/>
+                                            <TextBox x:Name="DeathHeightTextBox" Style="{StaticResource TextBoxTheme}"
+                                                     Height="40"
+                                                     Width="250" 
+                                                     Margin="379,141,60.6,125.4"
+                                                     Text="0.0"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Резервуар" Margin="274,194,0,84.4" Width="89" Height="28"/>
+                                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Margin="379,186,157.6,78.4" RenderTransformOrigin="1.183,0.532">
+                                                <ComboBoxItem x:Name="HorizontalTypeComboBoxItem" IsSelected="True" Content="Горизонтальний"/>
+                                                <ComboBoxItem x:Name="VerticalTypeComboBoxItem" IsSelected="False" Content="Вертикальний"/>
+                                            </ComboBox>
+
+                                            <Button x:Name="StartButton" 
+                                                    Style="{StaticResource OrangeButton}" 
+                                                    Margin="250,240,250.6,10.4" 
+                                                    Content="Обчислити об'єм"
+                                                    Click="StartButtonClick"/>
+
+                                        </Grid>
+                                    </Border>
+
 
                                 </Grid>
                             </Border>
@@ -113,7 +158,7 @@
                          Style="{StaticResource TabItemTheme}">
                         <Grid>
                             <Border Style="{StaticResource TabControlMainBorderTheme}" >
-                                
+
                             </Border>
                         </Grid>
                     </TabItem>

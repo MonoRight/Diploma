@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BachelorDiploma.Model;
 
 namespace BachelorDiploma
 {
@@ -84,7 +85,7 @@ namespace BachelorDiploma
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Title = "Оберіть файл";
-                openFileDialog.InitialDirectory = @"C:\Users";
+                openFileDialog.InitialDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 if (openFileDialog.ShowDialog() == true)
                 {
                     FileConnectionString.ConnectionString = openFileDialog.FileName.ToString();
@@ -103,6 +104,17 @@ namespace BachelorDiploma
             {
                 FileImage.Source = new BitmapImage(new Uri(@"/BachelorDiploma;component/Images/file.png", UriKind.RelativeOrAbsolute));
             }
+        }
+
+        private void StartButtonClick(object sender, RoutedEventArgs e)
+        {
+            string name = NameTextBox.Text;
+            double nominalVolume = Convert.ToDouble(NominalVolumeTextBox.Text.Replace(".", ","));
+            double fillingHeight = Convert.ToDouble(FillingHeightTextBox.Text.Replace(".", ","));
+            double deathHeight = Convert.ToDouble(DeathHeightTextBox.Text.Replace(".", ","));
+            TankType tankType = HorizontalTypeComboBoxItem.IsSelected ? TankType.Horizontal : TankType.Vertical;
+
+            InformationModel infoModel;
         }
     }
 }

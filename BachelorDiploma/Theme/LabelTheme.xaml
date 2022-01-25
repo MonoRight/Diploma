@@ -3,7 +3,12 @@
     <Style TargetType="{x:Type Label}"
            x:Key="LabelTheme">
         <Style.Setters>
-            
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="FontFamily" Value="/Fonts/#Manrope"/>
+            <Setter Property="Height" Value="27"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>
