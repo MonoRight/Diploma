@@ -101,13 +101,15 @@
                                     <Border Margin="10,200,10,10" 
                                             CornerRadius="25" 
                                             BorderBrush="Black" 
-                                            BorderThickness="2">
+                                            BorderThickness="2"
+                                            Background="#EBF9DF">
                                         <Grid >
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Назва" Margin="308,14,0,265.4"/>
-                                            <TextBox x:Name="NameTextBox" Style="{StaticResource TextBoxTheme}"
+                                            <TextBox x:Name="TankNameTextBox" Style="{StaticResource TextBoxTheme}"
                                              Height="40"
-                                             Width="250" Margin="379,6,60.6,260.4"/>
+                                             Width="250" Margin="379,6,60.6,260.4"
+                                             SpellCheck.IsEnabled="True" Language="uk"/>
 
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Номінальний об'єм (м³)" Margin="185,58,0,221.4" Width="184"/>
@@ -148,8 +150,6 @@
 
                                         </Grid>
                                     </Border>
-
-
                                 </Grid>
                             </Border>
                         </Grid>
@@ -166,7 +166,83 @@
                              Style="{StaticResource TabItemTheme}">
                         <Grid>
                             <Border Style="{StaticResource TabControlMainBorderTheme}" >
+                                <Grid Background="Transparent">
+                                    <Border Margin="10,10,10,10" 
+                                            CornerRadius="25" 
+                                            BorderBrush="Black" 
+                                            BorderThickness="2"
+                                            Background="#EBF9DF">
+                                        <Grid>
+                                            <Label Style="{StaticResource LabelTheme}" FontSize="19" Content="Температура:" Margin="21,11,0,450" Height="35"/>
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Температура під час проведення вимірювань (°С)" Margin="21,46,0,423"/>
+                                            <TextBox x:Name="TemperatureTextBox" Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" Margin="406,39,33.6,417" Text="15"/>
 
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Лінійний температурний коефіцієнт розширення &#xA;матеріалу резервуара (1/°C)" Margin="21,86,0,362" Height="48"/>
+                                            <TextBox x:Name="LinearCoeffTempTextBox" Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" Margin="406,90,33.6,366" Text="0.0000115"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" FontSize="19" Content="Параметри алгоритму:" Margin="21,139,0,322" Height="35"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Максимальна відстань між точками зовнішньої &#xA;оболонки перерізу (м)" Margin="21,171,0,277" Height="48"/>
+                                            <TextBox x:Name="MaxDistBetweenPointsTextBox" Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" Margin="406,174,33.6,282" Text="0.05"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Максимальна глибина увігнутостей (м)" Margin="21,232,0,235" Height="29"/>
+                                            <TextBox x:Name="MaxDepthTextBox" Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" Margin="406,224,33.6,232" Text="0.05"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Позиція нуля (м)" Margin="21,282,0,185" Height="29"/>
+                                            <TextBox x:Name="ZeroPositionTextBox" Style="{StaticResource TextBoxTheme}"
+                                             Height="40"
+                                             Width="250" Margin="406,274,33.6,182" Text="0"/>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Алгоритм побудови опуклої оболонки" Margin="21,327,0,140" Height="29"/>
+                                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Margin="406,323,33.6,140" RenderTransformOrigin="1.183,0.532">
+                                                <ComboBoxItem x:Name="AndrewHullTypeComboBoxItem" IsSelected="True" Content="Ендрю"/>
+                                                <ComboBoxItem x:Name="GrahamHullTypeComboBoxItem" IsSelected="False" Content="Скан Грехема"/>
+                                            </ComboBox>
+                                            
+                                            <Border CornerRadius="25" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="1"
+                                                    Margin="10,365,10,5"
+                                                    Background="#C0FFFF">
+                                                <Grid>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                           Content="Коригуючий коефіцієнт" Margin="10,18,0,74.8" Height="32" RenderTransformOrigin="0.77,0.375"/>
+                                                    <TextBox x:Name="CorrectiveCoeffTextBox" Style="{StaticResource TextBoxTheme}"
+                                                            Height="40"
+                                                            Width="250" Margin="397,14,21,70.8" Text="1"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                            Content="з (м)" Margin="10,77,0,15.8" Height="32" RenderTransformOrigin="0.77,0.375"/>
+                                                    <TextBox x:Name="FromTextBox" Style="{StaticResource TextBoxTheme}"
+                                                            Height="40"
+                                                            Width="250" Margin="69,71,349,13.8" Text="0"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                            Content="по (м)" Margin="332,77,0,15.8" Height="32" RenderTransformOrigin="0.77,0.375"/>
+                                                    <TextBox x:Name="ToTextBox" Style="{StaticResource TextBoxTheme}"
+                                                            Height="40"
+                                                            Width="250" Margin="397,71,21,13.8" Text="0"/>
+                                                </Grid>
+                                            </Border>
+
+                                        </Grid>
+
+                                    </Border>
+                                </Grid>
                             </Border>
                         </Grid>
                     </TabItem>

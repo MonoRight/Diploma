@@ -19,6 +19,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BachelorDiploma.Model;
+using BLL.Enums;
+using BLL.DTO;
+using BLL;
+using BLL.Exceptions;
 
 namespace BachelorDiploma
 {
@@ -26,7 +30,8 @@ namespace BachelorDiploma
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {      
+    {
+        private CalculationResult calculationResult;
         public MainWindow()
         {
             InitializeComponent();
@@ -106,15 +111,84 @@ namespace BachelorDiploma
             }
         }
 
-        private void StartButtonClick(object sender, RoutedEventArgs e)
+        private async void StartButtonClick(object sender, RoutedEventArgs e)
         {
-            string name = NameTextBox.Text;
-            double nominalVolume = Convert.ToDouble(NominalVolumeTextBox.Text.Replace(".", ","));
-            double fillingHeight = Convert.ToDouble(FillingHeightTextBox.Text.Replace(".", ","));
-            double deathHeight = Convert.ToDouble(DeathHeightTextBox.Text.Replace(".", ","));
-            TankType tankType = HorizontalTypeComboBoxItem.IsSelected ? TankType.Horizontal : TankType.Vertical;
+            if (FileConnectionString.ConnectionString != null)
+            {
+                if (TankNameTextBox.Text != string.Empty && NominalVolumeTextBox.Text != string.Empty && FillingHeightTextBox.Text != string.Empty && DeathHeightTextBox.Text != string.Empty &&
+                TemperatureTextBox.Text != string.Empty && LinearCoeffTempTextBox.Text != string.Empty && MaxDistBetweenPointsTextBox.Text != string.Empty && MaxDepthTextBox.Text != string.Empty &&
+                ZeroPositionTextBox.Text != string.Empty && CorrectiveCoeffTextBox.Text != string.Empty && FromTextBox.Text != string.Empty && ToTextBox.Text != string.Empty)
+                {
+                    string name;
+                    double nominalVolume, fillingHeight, deathHeight, temperature, linearCoeffTemp, maxDistBetweenPoints, maxDepth,
+                        zeroPosition, correctiveCoeff, fromCorrectiveCoeff, toCorrectiveCoeff;
+                    TankType tankType;
+                    AlgorithmHullType algorithmHullType;
+                    try
+                    {
+                        name = TankNameTextBox.Text;
+                        nominalVolume = Convert.ToDouble(NominalVolumeTextBox.Text.Replace(".", ","));
+                        fillingHeight = Convert.ToDouble(FillingHeightTextBox.Text.Replace(".", ","));
+                        deathHeight = Convert.ToDouble(DeathHeightTextBox.Text.Replace(".", ","));
+                        tankType = HorizontalTypeComboBoxItem.IsSelected ? TankType.Horizontal : TankType.Vertical;
+                        temperature = Convert.ToDouble(TemperatureTextBox.Text.Replace(".", ","));
+                        linearCoeffTemp = Convert.ToDouble(LinearCoeffTempTextBox.Text.Replace(".", ","));
+                        maxDistBetweenPoints = Convert.ToDouble(MaxDistBetweenPointsTextBox.Text.Replace(".", ","));
+                        maxDepth = Convert.ToDouble(MaxDepthTextBox.Text.Replace(".", ","));
+                        zeroPosition = Convert.ToDouble(ZeroPositionTextBox.Text.Replace(".", ","));
+                        correctiveCoeff = Convert.ToDouble(CorrectiveCoeffTextBox.Text.Replace(".", ","));
+                        fromCorrectiveCoeff = Convert.ToDouble(FromTextBox.Text.Replace(".", ","));
+                        toCorrectiveCoeff = Convert.ToDouble(ToTextBox.Text.Replace(".", ","));
 
-            InformationModel infoModel;
+                        if (AndrewHullTypeComboBoxItem.IsSelected)
+                            algorithmHullType = AlgorithmHullType.Andrew;
+                        else if (GrahamHullTypeComboBoxItem.IsSelected)
+                            algorithmHullType = AlgorithmHullType.Graham;
+                        else 
+                            algorithmHullType = AlgorithmHullType.Andrew;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Дані введені не вірно!");
+                        return;
+                    }
+                    InformationModelDto infoModel = new InformationModelDto(name, nominalVolume, fillingHeight, deathHeight, tankType, algorithmHullType, temperature,
+                                   linearCoeffTemp, maxDistBetweenPoints, maxDepth, zeroPosition, correctiveCoeff, fromCorrectiveCoeff, toCorrectiveCoeff);
+                    MainCalculation mainCalculation = new MainCalculation(infoModel, FileConnectionString.ConnectionString);
+
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            calculationResult = mainCalculation.Calculate();
+                            GC.Collect();
+                            MessageBox.Show(g);
+                        }
+                        catch (WrongFileStructureException)
+                        {
+                            MessageBox.Show("Структура файлу не вірна!");
+                        }
+                        catch (GrahamScanConvexHullException)
+                        {
+                            MessageBox.Show("Помилка роботи алгоритму Грехема!");
+                        }
+                        catch(Exception exc)
+                        {
+                            MessageBox.Show(exc.ToString());
+                        }
+
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Всі поля повинні бути заповнені!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Файл відсутній!");
+            }
+            
         }
     }
 }

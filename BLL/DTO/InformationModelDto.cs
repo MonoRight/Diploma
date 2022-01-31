@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BachelorDiploma.Model
+namespace BLL.DTO
 {
-    public class InformationModel
+    public class InformationModelDto
     {
         [Required]
         public string Name { get; set; }
@@ -20,6 +20,8 @@ namespace BachelorDiploma.Model
         public double DeathHeigth { get; set; }
         [Required]
         public TankType TankType { get; set; }
+        [Required]
+        public AlgorithmHullType AlgorithmHullType { get; set; }
         [Required]
         public double Temperature { get; set; }
         [Required]
@@ -37,8 +39,8 @@ namespace BachelorDiploma.Model
         [Required]
         public double ToCorrectiveCoeff { get; set; }
 
-        public InformationModel(string name, double nominalVolume, double fillingHeight, double deathHeight, 
-            TankType tankType, double temperature, double linearTempCoeff, double maxDistBetweenPoints,
+        public InformationModelDto(string name, double nominalVolume, double fillingHeight, double deathHeight,
+            TankType tankType, AlgorithmHullType algorithmHullType, double temperature, double linearTempCoeff, double maxDistBetweenPoints,
             double maxDepth, double zeroPosition, double correctiveCoeff, double fromCorrectiveCoeff, double toCorrectiveCoeff)
         {
             Name = name;
@@ -46,6 +48,7 @@ namespace BachelorDiploma.Model
             FillingHeight = fillingHeight;
             DeathHeigth = deathHeight;
             TankType = tankType;
+            AlgorithmHullType = algorithmHullType;
             Temperature = temperature;
             LinearTempCoeff = linearTempCoeff;
             MaxDistBetweenPoints = maxDistBetweenPoints;

@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,10 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AndrewConvexHull.cs" />
+    <Compile Include="Algorithms\DentInclusion.cs" />
     <Compile Include="Algorithms\GaussSquare.cs" />
+    <Compile Include="Algorithms\GrahamScanConvexHull.cs" />
+    <Compile Include="Algorithms\Volume.cs" />
+    <Compile Include="DTO\CalculationResult.cs" />
+    <Compile Include="Enums\AlgorithmHullType.cs" />
+    <Compile Include="Exceptions\GrahamScanConvexHullException.cs" />
+    <Compile Include="Exceptions\WrongFileStructureException.cs" />
+    <Compile Include="MainCalculation.cs" />
+    <Compile Include="DTO\InformationModelDto.cs" />
+    <Compile Include="Enums\TankType.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

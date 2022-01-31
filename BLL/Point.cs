@@ -22,5 +22,9 @@ namespace BLL
             LeftFlag = false;
             RightFlag = false;
         }
+
+        public Point()
+        {
+        }
     }
 }
