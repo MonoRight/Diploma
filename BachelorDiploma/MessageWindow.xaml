@@ -1,0 +1,63 @@
+﻿<Window x:Class="BachelorDiploma.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BachelorDiploma" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Height="150" Width="400"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterScreen">
+    <Border Background="#272537"
+            CornerRadius="20"
+            BorderBrush="AliceBlue"
+            BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Помилка"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontSize="20"
+                       FontWeight="Medium"
+                           Margin="0,5,0,0"
+                           FontFamily="Montserrat"/>
+            
+            <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                <iconPacks:PackIconBootstrapIcons Kind="DashCircle"
+                                                  VerticalAlignment="Center"
+                                                  Style="{StaticResource ManageIconsThemeBootstrapIcons}"
+                                                  MouseDown="PackIconBootstrapIcons_MouseDown"/>
+                <iconPacks:PackIconEntypo Kind="CircleWithCross"  
+                                          VerticalAlignment="Center"
+                                          Style="{StaticResource ManageIconsThemeEntypo}"
+                                          MouseDown="PackIconEntypo_MouseDown"/>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Label 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20"
+                    VerticalContentAlignment="Center"
+                    FontFamily="/Fonts/#Manrope"
+                    FontSize="16"
+                    Foreground="White">
+                    <Label.Content>
+                        <TextBlock x:Name="ErrorMessageTextBlock" 
+                                   TextWrapping="Wrap"/>
+                    </Label.Content>
+                </Label>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

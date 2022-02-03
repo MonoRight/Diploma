@@ -147,9 +147,16 @@ namespace BachelorDiploma
                         else 
                             algorithmHullType = AlgorithmHullType.Andrew;
                     }
-                    catch
+                    catch(OverflowException)
                     {
-                        MessageBox.Show("Дані введені не вірно!");
+                        MessageWindow messageWindow = new MessageWindow("Введене число виходить за рамки діапазону типу даних! Зменшіть його розмір!");
+                        messageWindow.Show();
+                        return;
+                    }
+                    catch(FormatException)
+                    {
+                        MessageWindow messageWindow = new MessageWindow("Числові дані введені не вірно!");
+                        messageWindow.Show();
                         return;
                     }
                     InformationModelDto infoModel = new InformationModelDto(name, nominalVolume, fillingHeight, deathHeight, tankType, algorithmHullType, temperature,
@@ -162,31 +169,39 @@ namespace BachelorDiploma
                         {
                             calculationResult = mainCalculation.Calculate();
                             GC.Collect();
-                            MessageBox.Show(g);
+                            MessageBox.Show(calculationResult.Volume);
+                            Notification.Show("Розрахунки завершено",
+                                            "Перевірте вкладку \"Результати\"",
+                                            NotificationType.Success,
+                                            0, 0, 60);
                         }
                         catch (WrongFileStructureException)
                         {
-                            MessageBox.Show("Структура файлу не вірна!");
+                            MessageWindow messageWindow = new MessageWindow("Структура файлу не вірна!");
+                            messageWindow.Show();
                         }
                         catch (GrahamScanConvexHullException)
                         {
-                            MessageBox.Show("Помилка роботи алгоритму Грехема!");
+                            MessageWindow messageWindow = new MessageWindow("Помилка роботи алгоритму Грехема!");
+                            messageWindow.Show();
                         }
                         catch(Exception exc)
                         {
-                            MessageBox.Show(exc.ToString());
+                            MessageWindow messageWindow = new MessageWindow(exc.ToString());
+                            messageWindow.Show();
                         }
-
                     });
                 }
                 else
                 {
-                    MessageBox.Show("Всі поля повинні бути заповнені!");
+                    MessageWindow messageWindow = new MessageWindow("Всі поля повинні бути заповнені!");
+                    messageWindow.Show();
                 }
             }
             else
             {
-                MessageBox.Show("Файл відсутній!");
+                MessageWindow messageWindow = new MessageWindow("Файл відсутній!");
+                messageWindow.Show();
             }
             
         }
