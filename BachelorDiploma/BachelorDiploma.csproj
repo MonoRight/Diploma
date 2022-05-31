@@ -178,6 +178,8 @@
     <Compile Include="MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AdditionalTablesModel.cs" />
+    <Compile Include="Model\AuxiliaryEquipmentModel.cs" />
     <Compile Include="Model\InformationModel.cs" />
     <Compile Include="NotificationManagement\Notification.cs" />
     <Compile Include="RAMManagement\RAMManager.cs" />
@@ -226,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Theme\TextBoxTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\VerticalScrollBarTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

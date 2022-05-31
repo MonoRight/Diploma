@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 using BachelorDiploma.Model;
 using BLL.Enums;
 using BLL.DTO;
@@ -44,10 +45,24 @@ namespace BachelorDiploma
             RAMManager.ShowNotificationRAMInformation();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            T1_2DopomijneObladnannyaDataGrid.ItemsSource = AdditionalTablesModel.T1_2DopomijneObladnannya;
+            AdditionalTablesModel.T1_2DopomijneObladnannya.ListChanged += T1_2DopomijneObladnannya_ListChanged;
+        }
+
+        private void T1_2DopomijneObladnannya_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.ItemChanged)
+            {
+
+            }
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
 
         private void PackIconEntypo_MouseDown(object sender, MouseButtonEventArgs e)
@@ -203,7 +218,6 @@ namespace BachelorDiploma
                 MessageWindow messageWindow = new MessageWindow("Файл відсутній!");
                 messageWindow.Show();
             }
-            
         }
     }
 }
