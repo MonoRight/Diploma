@@ -251,210 +251,190 @@
                                         CornerRadius="10">
                                     <ScrollViewer Margin="0,2,2,2">
                                         <StackPanel MouseDown="Window_MouseDown">
-
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Протокол повірки резервуару"
                                                    FontSize="14"
                                                    HorizontalAlignment="Center"
                                                    Margin="0,10,0,0"/>
+
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Таблиця 1. Загальні відомості"
                                                    FontSize="12"
                                                    Margin="10,10,0,0"/>
-
-                                            <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="Таблиця 2.3. Абсалютна висота неконтрольованої порожнини, низу(верху)&#10;зливного (всмоктувального) патрубка, гранична(максимальна) абсалютна&#10;висота й температура стінки резервуара"
-                                                   FontSize="12"
-                                                   Margin="10,10,0,0" Height="Auto"/>
-                                            <Grid Height="125" Background="Yellow">
-                                                <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="Абсалютна висота, мм"
-                                                   FontSize="12"
-                                                   Margin="262,10,0,88"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="Неконтрольованої&#10;порожнини"
-                                                   Height="44"
-                                                   FontSize="12"
-                                                   Margin="25,33,0,48"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="низу(верху) зливного&#10;(всмоктувального) патрубка"
-                                                   Height="44"
-                                                   FontSize="12"
-                                                   Margin="155,33,0,48"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="гранична(максимальна)"
-                                                   FontSize="12"
-                                                   Margin="342,38,0,60"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
-                                                   Content="Температура&#10;стінки резервуара,&#10;°С"
-                                                   Height="59"
-                                                   FontSize="12"
-                                                   Margin="525,24,0,42"/>
-                                            </Grid>
-
-                                            <Grid Height="180" Background="BurlyWood">
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="180">
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Реєстраційний номер документа"
                                                    FontSize="12"
-                                                       Margin="10,10,0,143"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                       Margin="25,10,0,143"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="10,32,451.4,118"
+                                                     Margin="10,32,428,118"
                                                      x:Name="T1RegNumDocTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Дата реєстрації"
                                                    FontSize="12"
-                                                   Margin="280,10,0,143"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="289,10,0,143"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="283,32,290.4,118"
+                                                     Margin="256,32,240,118"
                                                      x:Name="T1RegDateTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Дата повірки (калібрування)"
                                                    FontSize="12"
-                                                   Margin="464,10,0,143"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="458,10,0,143"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="470,32,27.4,118"
+                                                     Margin="444,32,17,118"
                                                      x:Name="T1CalibrateDateTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Тип резервуара"
                                                    FontSize="12"
-                                                   Margin="10,67,0,86"/>
+                                                   Margin="18,67,0,86"/>
 
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="10,89,557.4,61"
+                                                     Margin="10,89,534,61"
                                                      x:Name="T1RezTypeTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Номер резервуара"
                                                    FontSize="12"
                                                    Margin="157,67,0,86"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="154,89,388.4,61"
                                                      x:Name="T1RezNumberTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Температура повітря, °С"
                                                    FontSize="12"
                                                    Margin="314,67,0,86"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="302,89,195.4,61"
+                                                     Margin="299,89,187,61"
                                                      x:Name="T1TemperatureTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Атмосферний тиск, кПа"
                                                    FontSize="12"
-                                                   Margin="500,67,0,86"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="498,67,0,86"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="500,89,17.4,61"
+                                                     Margin="496,89,17,61"
                                                      x:Name="T1AtmPressureTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Методика повірки&#xA;(калібрування)"
                                                    FontSize="12"
-                                                   Margin="7,137,0,0" Height="43"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Margin="10,132,0,5" Height="43"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Познака"
                                                    FontSize="12"
-                                                   Margin="183,125,0,28"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="192,125,0,28" RenderTransformOrigin="0.73,0.5"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="149,145,382.4,5"
+                                                     Margin="145,145,372,5"
                                                      x:Name="T1MethodPoznakaTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Назва"
                                                    FontSize="12"
-                                                   Margin="357,125,0,28"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="368,125,0,28"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="321,145,232.4,5"
+                                                     Margin="314,145,208,5"
                                                      x:Name="T1MethodNameTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Організація-розробник"
                                                    FontSize="12"
-                                                   Margin="487,125,0,28"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                   Margin="489,125,0,28"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
-                                                     Margin="487,145,30.4,5"
+                                                     Margin="475,145,17,5"
                                                      x:Name="T1MethodOrganizationTextBox"/>
-                                            </Grid>
+                                                </Grid>
+                                            </Border>
 
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Таблиця 1.1 Еталонний прилад"
                                                    FontSize="12"
                                                    Margin="10,10,0,0"/>
-                                            <Grid Height="221">
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="221">
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Назва"
                                                    FontSize="12"
                                                    Margin="10,9,0,185"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,6,9.4,185"
                                                      x:Name="T1_1NameTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Тип, виробник"
                                                    FontSize="12"
                                                    Margin="10,44,0,150"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,41,9.4,150"
                                                      x:Name="T1_1TypeTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Сервісний номер"
                                                    FontSize="12"
                                                    Margin="10,79,0,115"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,76,9.4,115"
                                                      x:Name="T1_1ServiceNumTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Номер свідоцтва про&#xA;повірку"
                                                    FontSize="12"
                                                    Margin="10,106,0,73" Height="42"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,111,9.4,80"
                                                      x:Name="T1_1NumSvidocDovidkaTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Дата повірки&#xA;(калібрування)"
                                                    FontSize="12"
                                                    Margin="10,142,0,37" Height="42"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,146,9.4,45"
                                                      x:Name="T1_1CalibrateDateTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Основні параметри"
                                                    FontSize="12"
                                                    Margin="10,184,0,10"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="200,181,9.4,10"
                                                      x:Name="T1_1MainParametersTextBox"/>
-                                            </Grid>
+                                                </Grid>
+                                            </Border>
 
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Таблиця 1.2 Допоміжне обладнання"
                                                    FontSize="12"
                                                    Margin="10,10,0,0"/>
-                                            <Grid Height="150">
-                                                <DataGrid x:Name="T1_2DopomijneObladnannyaDataGrid"
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="150">
+                                                    <DataGrid x:Name="T1_2DopomijneObladnannyaDataGrid"
                                                           AutoGenerateColumns="False"
                                                           CanUserResizeColumns="True"
                                                           CanUserAddRows="True"
@@ -467,114 +447,674 @@
                                                           RowBackground="#FFB5F6B5"
                                                           BorderBrush="Transparent">
 
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Binding="{Binding Path=Name}" Header="Назва" Width="120"/>
-                                                        <DataGridTextColumn Binding="{Binding Path=Type}" Header="Тип" Width="120" />
-                                                        <DataGridTextColumn Binding="{Binding Path=SerialNumber}" Header="Серійний номер" Width="*" />
-                                                        <DataGridTextColumn Binding="{Binding Path=SertificateNumber}" Header="Номер свідоцтва про&#10;повірку (калібрування)" Width="*"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
-                                            </Grid>
+                                                        <DataGrid.Columns>
+                                                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="Назва" Width="120"/>
+                                                            <DataGridTextColumn Binding="{Binding Path=Type}" Header="Тип" Width="120" />
+                                                            <DataGridTextColumn Binding="{Binding Path=SerialNumber}" Header="Серійний номер" Width="*" />
+                                                            <DataGridTextColumn Binding="{Binding Path=SertificateNumber}" Header="Номер свідоцтва про&#10;повірку (калібрування)" Width="*"/>
+                                                        </DataGrid.Columns>
+                                                    </DataGrid>
+                                                </Grid>
+                                            </Border>
 
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Таблиця 2.1. Координати точки вимірювання рівня та базова висота резервуара й рівнеміра"
                                                    FontSize="12"
                                                    Margin="10,10,0,0"/>
-                                            <Grid Height="80">
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="80">
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Xb, м"
                                                    FontSize="12"
                                                        Margin="35,10,0,43" RenderTransformOrigin="0.824,0.2"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="20,40,580.4,10"
                                                      x:Name="T2_1XbTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Yb, м"
                                                    FontSize="12"
                                                        Margin="134,10,0,43"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="120,40,480.4,10"
                                                      x:Name="T2_1YbTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Базова висота резервуара, мм"
                                                    FontSize="12"
                                                        Margin="217,10,0,43"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="217,40,259.4,10"
                                                      x:Name="T2_1BaseHeightRezTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Базова висота рівнеміра, мм"
                                                    FontSize="12"
                                                        Margin="449,10,0,43"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="449,40,36.4,10"
                                                      x:Name="T2_1BaseHeightRivnemeraTextBox"/>
-                                            </Grid>
+                                                </Grid>
+                                            </Border>
 
                                             <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Таблиця 2.2. Параметри рідини під час вимірювань та зберігання"
                                                    FontSize="12"
                                                    Margin="10,10,0,0"/>
-                                            <Grid Height="115">
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="115">
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Параметр рідини, що міститься в резервуарі під час вимірювань"
                                                    FontSize="12"
                                                    Margin="10,11,0,72"/>
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Назва"
                                                    FontSize="12"
                                                    Margin="37,43,0,40"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="10,70,560.4,10"
                                                      x:Name="T2_2NameTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Густина, кг/м³"
                                                    FontSize="12"
                                                    Margin="139,43,0,40"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="139,70,439.4,10"
                                                      x:Name="T2_2GustinaTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="рівень, мм"
                                                    FontSize="12"
                                                    Margin="279,43,0,40"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="275,70,313.4,10"
                                                      x:Name="T2_2RivenTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="тиск, Мпа"
                                                    FontSize="12"
                                                    Margin="403,43,0,40"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="405,70,199.4,10"
                                                      x:Name="T2_2TiskTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Середня густина&#10;рідини в резервуарі&#10;під час зберігання,&#10;кг/м³"
                                                    FontSize="12"
                                                    Margin="510,1,0,42" Height="72"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="510,70,30.4,10"
                                                      x:Name="T2_2SeverdnyaGustinaTextBox"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 2.3. Абсалютна висота неконтрольованої порожнини, низу(верху)&#10;зливного (всмоктувального) патрубка, гранична(максимальна) абсалютна&#10;висота й температура стінки резервуара"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0" Height="Auto"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="125">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Абсалютна висота, мм"
+                                                   FontSize="12"
+                                                   Margin="262,10,0,88"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Неконтрольованої&#10;порожнини"
+                                                   Height="44"
+                                                   FontSize="12"
+                                                   Margin="25,33,0,48"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="28,65,525,0"
+                                                     x:Name="T2_3NekontrPorojniniTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="низу(верху) зливного&#10;(всмоктувального) патрубка"
+                                                   Height="44"
+                                                   FontSize="12"
+                                                   Margin="155,33,0,48"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="160,65,330,0"
+                                                     x:Name="T2_3NizyVerhyTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="гранична(максимальна)"
+                                                   FontSize="12"
+                                                   Margin="355,38,0,60"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="350,65,155,0"
+                                                     x:Name="T2_3GranichnaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Температура&#10;стінки резервуара,&#10;°С"
+                                                   Height="59"
+                                                   FontSize="12"
+                                                   Margin="525,24,0,42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="530,65,20,0"
+                                                     x:Name="T2_3TemperatureTextBox"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 2.4 Параметри стінок"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="180">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Елемент резервуара"
+                                                   FontSize="12" Margin="21,21,0,132"
+                                                       />
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Товщина стінки,мм"
+                                                   FontSize="12"
+                                                       Margin="186,10,0,143"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="значення"
+                                                   FontSize="12"
+                                                       Margin="171,37,0,116" RenderTransformOrigin="1.045,0.543"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="границі"
+                                                   FontSize="12"
+                                                       Margin="269,37,0,116"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Циліндрична частина"
+                                                   FontSize="12"
+                                                       Margin="21,72,0,81"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Переднє днище"
+                                                   FontSize="12"
+                                                       Margin="21,107,0,46"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Заднє днище"
+                                                   FontSize="12"
+                                                       Margin="21,142,0,11"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Товщина шару фарби стінки,мм"
+                                                   FontSize="12"
+                                                       Margin="334,10,0,143"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="значення"
+                                                   FontSize="12"
+                                                       Margin="365,37,0,116"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="границі"
+                                                   FontSize="12"
+                                                       Margin="459,37,0,116"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Форма елемента"
+                                                   FontSize="12"
+                                                       Margin="549,21,0,132"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="174,69,431,81"
+                                                     x:Name="T2_4CilindrTovshinaStinkiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="263,69,342,81"
+                                                    x:Name="T2_4CilindrTovshinaStinkiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="364,69,241,81"
+                                                    x:Name="T2_4CilindrTovshinaSharuFarbiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="453,69,152,81"
+                                                    x:Name="T2_4CilindrTovshinaSharuFarbiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="549,69,10,81"
+                                                    x:Name="T2_4CilindrFormElementTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="174,104,431,46"
+                                                    x:Name="T2_4PerednyeDnisheTovshinaStinkiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="263,104,342,46"
+                                                    x:Name="T2_4PerednyeDnisheTovshinaStinkiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="364,104,241,46"
+                                                    x:Name="T2_4PerednyeDnisheTovshinaSharuFarbiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="453,104,152,46"
+                                                    x:Name="T2_4PerednyeDnisheTovshinaSharuFarbiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="549,104,10,46"
+                                                    x:Name="T2_4PerednyeDnisheFormElementTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="174,139,431,11"
+                                                    x:Name="T2_4ZadnyeDnisheTovshinaStinkiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="263,139,342,11"
+                                                    x:Name="T2_4ZadnyeDnisheTovshinaStinkiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="364,139,241,11"
+                                                    x:Name="T2_4ZadnyeDnisheTovshinaSharuFarbiZnachenyaTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="453,139,152,11"
+                                                    x:Name="T2_4ZadnyeDnisheTovshinaSharuFarbiGraniciTextBox"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="549,139,10,11"
+                                                    x:Name="T2_4ZadnyeDnisheFormElementTextBox"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 2.5 Параметри повірочної рідини"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0"/>
+                                            <Label Style="{StaticResource LabelTheme}"
+                                                   Content="Таблиця 2.5.1 Загальні параметри повірочної рідини згідно з ДСТУ 4218"
+                                                   FontSize="12"
+                                                   Margin="10,0,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="135">
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Назва"
+                                                   FontSize="12"
+                                                       Margin="20,27,0,81" RenderTransformOrigin="0.482,0.815"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="10,84,595,21"
+                                                     x:Name="T2_5_1NameTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Густина рідини,&#xA;що повіряють, кг/м³"
+                                                   FontSize="12"
+                                                       Margin="85,16,0,75" Height="44"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="85,84,451,21"
+                                                    x:Name="T2_5_1GustinaRidiniTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Коєфіцієнт об'ємного&#xA;розширення, 10¯³·1/°С"
+                                                   FontSize="12"
+                                                       Margin="227,16,0,75" Height="44"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="227,84,302,21"
+                                                    x:Name="T2_5_1KoeffObemTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Коєфіціент стиснення&#xA;рідини, 10¯³·1/°С"
+                                                   FontSize="12"
+                                                       Margin="376,16,0,75" Height="44"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="376,84,158,21"
+                                                    x:Name="T2_5_1KoeffStisnennyaTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Коєфіціент лінійного&#xA;розширення&#xA;резервуара,&#xA;10¯³1/°С"
+                                                   FontSize="12"
+                                                       Margin="520,10,0,40" Height="85"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="520,84,10,21"
+                                                    x:Name="T2_5_1KoeffLiniynogoTextBox"/>
                                             </Grid>
+                                            </Border>
 
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 2.5.2 Поточні параметри повірочної рідини згідно з ДСТУ 4218"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="150">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Номер&#xA;вимірювання"
+                                                   FontSize="12"
+                                                       Margin="15,27,0,77" Height="46"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="15,92,564,28"
+                                                     x:Name="T2_5_2NumberTextBox"/>
 
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Дозова місткість&#xA;(об'єм дози), м³"
+                                                   FontSize="12"
+                                                       Margin="114,30,0,78" Height="42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="114,92,446,28"
+                                                    x:Name="T2_5_2DozovaMistTextBox"/>
 
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Температура рідини, °С"
+                                                   FontSize="12"
+                                                       Margin="241,15,0,107" Height="28"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="у резервуарі"
+                                                   FontSize="12"
+                                                       Margin="232,47,0,75" Height="28"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="232,92,353,28"
+                                                    x:Name="T2_5_2TemperatureInRezTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="у лічильнику&#xA;рідини"
+                                                   FontSize="12"
+                                                       Margin="325,43,0,65" Height="42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="325,92,256,28"
+                                                    x:Name="T2_5_2TemperatureLichilnickTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Рівень&#xA;рідини,мм"
+                                                   FontSize="12"
+                                                       Margin="427,27,0,78" Height="45"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="427,92,170,28"
+                                                    x:Name="T2_5_2RivenRidiniTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Надлишковий тиск&#xA;у лічильнику рідини,&#xA;Мпа"
+                                                   FontSize="12"
+                                                       Margin="514,24,0,65" Height="61"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="514,92,17,28"
+                                                    x:Name="T2_5_2NadlishkoviyTiskTextBox"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 2.6 Внутрішні деталі та обладнання резервуара"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0"/>
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Примітка. Довжина деталі '-' збільшує місткість резервуара, довжина деталі '+' зменшує місткість резервуара."
+                                                   FontSize="10"
+                                                   Margin="10,0,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="160">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Тип"
+                                                   FontSize="12"
+                                                       Margin="24,57,0,76"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="10,96,596,34"
+                                                     x:Name="T2_6TypeTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Висота,мм"
+                                                   FontSize="12"
+                                                       Margin="79,57,0,76"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="82,96,518,34"
+                                                    x:Name="T2_6HeightTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Довжина,мм"
+                                                   FontSize="12"
+                                                       Margin="168,57,0,76"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="168,96,415,34"
+                                                    x:Name="T2_6LenghtTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Діаметр&#xA;(ширина),мм"
+                                                   FontSize="12"
+                                                       Margin="270,51,0,67" Height="42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="270,98,311,32"
+                                                    x:Name="T2_6DiameterTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Кут нахилу&#xA;осі, °С"
+                                                   FontSize="12"
+                                                       Margin="367,51,0,67" Height="42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="367,98,227,32"
+                                                    x:Name="T2_6KutNahilyTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Об'єм, м³"
+                                                   FontSize="12"
+                                                       Margin="458,57,0,76"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="458,98,147,32"
+                                                    x:Name="T2_6ObemTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Абсолютна&#xA;висота,мм"
+                                                   FontSize="12"
+                                                       Margin="554,15,0,103" Height="42"/>
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="нижня&#xA;межа"
+                                                   FontSize="12"
+                                                       Margin="538,57,0,60" Height="43"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="538,98,84,32"
+                                                    x:Name="T2_6AbsoluteNijnyaMejaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="верхня&#xA;межа"
+                                                   FontSize="12"
+                                                       Margin="600,57,0,60" Height="43"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="603,98,19,32"
+                                                    x:Name="T2_6AbsoluteVerhnyaMejaTextBox"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Таблиця 3.2 Відхили внутрішньої поверхні стінки циліндричної частини резервуара від правильної&#xA;геометричної форми"
+                                                   FontSize="12"
+                                                   Margin="10,10,0,0" Height="40"/>
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="(Таблиця 3.2 генерується тільки для ВЕРТИКАЛЬНОГО резервуару)"
+                                                   FontSize="12"
+                                                   Margin="10,0,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="90">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Кількість шарів"
+                                                   FontSize="12"
+                                                       Margin="152,13,0,50"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="328,10,215,50"
+                                                     x:Name="T3_2KilkistSharivTextBox" Text="0"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Кількість вертикальних перетинів"
+                                                   FontSize="12"
+                                                       Margin="93,51,0,12"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="328,48,215,12"
+                                                    x:Name="T3_2KilkistVerticalPeretinivTextBox" Text="0"/>
+                                                </Grid>
+                                            </Border>
+
+                                            <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Загальна інформація"
+                                                   HorizontalAlignment="Center"
+                                                   FontSize="14"
+                                                   Margin="10,10,0,0"/>
+                                            <Border CornerRadius="14" 
+                                                    BorderBrush="Black" 
+                                                    BorderThickness="0.3">
+                                                <Grid Height="500">
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Призначення"
+                                                   FontSize="12"
+                                                       Margin="10,12,0,461"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="417,9,10,461"
+                                                     x:Name="GradPriznachenyaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Організація-власник"
+                                                   FontSize="12"
+                                                       Margin="10,47,0,426"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,44,10,426"
+                                                    x:Name="GradOrganizaciaVlasnikTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Місце встановлення резервуара (місце виконання вимірювань)"
+                                                   FontSize="12"
+                                                       Margin="10,82,0,391"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,79,10,391"
+                                                    x:Name="GradMisceVstanovlenyaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Тип резервуара"
+                                                   FontSize="12"
+                                                       Margin="10,117,0,356"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,114,10,356"
+                                                    x:Name="GradTypeRezTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Номінальна місткість"
+                                                   FontSize="12"
+                                                       Margin="10,152,0,321"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,149,10,321"
+                                                    x:Name="GradNominalMistTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Границі допустимої відносної похибки (невизначеність)&#xA;визначення загальної місткості"
+                                                   FontSize="12"
+                                                       Margin="10,179,0,281" Height="40"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,184,10,286"
+                                                    x:Name="GradGraniciDopustimoiPohibkiTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Базова висота резервуара"
+                                                   FontSize="12"
+                                                       Margin="10,222,0,251"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,219,10,251"
+                                                    x:Name="GradBasovaVisotaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Гранична абсолютна висота наповнення"
+                                                   FontSize="12"
+                                                       Margin="10,257,0,216"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,254,10,216"
+                                                    x:Name="GradGranichnaVisotaNapovnenyaTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Місткість на граничну абсолютну висоту наповнення"
+                                                   FontSize="12"
+                                                       Margin="10,292,0,181"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,289,10,181"
+                                                    x:Name="GradMistkistNaGranichnyVisotyTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Ділянку нижче ______мм для облікових і торових операцій не&#xA;використовують"
+                                                   FontSize="12"
+                                                       Margin="10,319,0,141" Height="42"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,324,10,146"
+                                                    x:Name="GradDilyankyNizcheTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Місткість 'мертвої' порожнини"
+                                                   FontSize="12"
+                                                       Margin="10,362,0,111"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,359,10,111"
+                                                    x:Name="GradMistkistMertvoiPorozniniTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Дата проведення повірки (калібрування)"
+                                                   FontSize="12"
+                                                       Margin="10,397,0,76"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,394,10,76"
+                                                    x:Name="GradDataProvedenyaPovirkiTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Дата чергової повірки (калібрування)"
+                                                   FontSize="12"
+                                                       Margin="10,432,0,41"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,429,10,41"
+                                                    x:Name="GradDataChergovoiPovirkiTextBox"/>
+
+                                                    <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Всього аркушів у градуювальній таблиці"
+                                                   FontSize="12"
+                                                       Margin="10,467,0,6"/>
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    Height="30"
+                                                    Margin="417,464,10,6"
+                                                    x:Name="GradVsogoArkushivTextBox"/>
+                                                </Grid>
+                                            </Border>
                                         </StackPanel>
 
 

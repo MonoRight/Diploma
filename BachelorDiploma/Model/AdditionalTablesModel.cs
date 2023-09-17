@@ -111,6 +111,10 @@ namespace BachelorDiploma.Model
         public static string T3_1StypinZnachenya { get; set; }
         public static string T3_1StypinGranici { get; set; }
 
+        //Table3.2 Відхили внутрішньої поверхні стінки циліндричної частини резервуара від правильної геометричної форми
+        public static string T3_2KilkistShariv { get; set; }
+        public static string T3_2KilkistVerticalPeretiniv { get; set; }
+
         //Table3.3 Загальні параметри резервуара
         public static string T3_3MistkistNekontrolovanoiChislove { get; set; }
         public static string T3_3MistkistNekontrolovanoiGranici { get; set; }
