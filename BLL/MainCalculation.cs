@@ -13,13 +13,18 @@ namespace BLL
     {
         private readonly string _fileConnectionString;
         private readonly InformationModelDto _informationModel;
-        public MainCalculation(InformationModelDto informationModel, string fileConnectionString)
+        private AdditionalTablesModelDto _additionalTablesModelDto;
+        public CalculationResult CalculationResult { get; private set; }
+
+
+        public MainCalculation(InformationModelDto informationModel, AdditionalTablesModelDto additionalTablesModelDto, string fileConnectionString)
         {
             _informationModel = informationModel;
+            _additionalTablesModelDto = additionalTablesModelDto;
             _fileConnectionString = fileConnectionString;
         }
 
-        public CalculationResult Calculate()
+        public void Calculate()
         {
             SortedDictionary<double, List<Point>> allPoints = new SortedDictionary<double, List<Point>>();
             SortedDictionary<double, List<Point>> convexHullPoints = new SortedDictionary<double, List<Point>>();
@@ -28,6 +33,7 @@ namespace BLL
             int numberOfLastZCoordinate = 0;
             Volume volume = new Volume();
             double defformation = 1 + ((15 - _informationModel.Temperature) * _informationModel.LinearTempCoeff);
+            List<double> keys = new List<double>();
 
             ReadFile(ref allPoints);
             MakeHulls(ref allPoints, ref convexHullPoints);
@@ -44,10 +50,50 @@ namespace BLL
             volume.TotalVolume = volume.VolumesBetweenHulls.Sum();
 
             string volumeStr = Math.Round(volume.TotalVolume, 4).ToString();
+            CalculationResult = new CalculationResult(volumeStr);
 
-            CalculationResult calculationResult = new CalculationResult(volumeStr);
+            SortedDictionary<double, List<Point>> convexHullToHeightOfRez = CopySortDicByHeight(ref convexHullPoints, _informationModel.FillingHeight, _informationModel.ZeroPosition);
 
-            return calculationResult;
+            if(_informationModel.TankType == TankType.Vertical)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private SortedDictionary<double, List<Point>> CopySortDicByHeight(ref SortedDictionary<double, List<Point>> convexHull, double height, double zeroPosition)
+        {
+            SortedDictionary<double, List<Point>> newSortDic = new SortedDictionary<double, List<Point>>();
+            double tempHeight = 0, beforeKey = 0;
+            int iterator = 0;
+            double heightRez = height + zeroPosition;
+
+            foreach (var element in convexHull)
+            {
+                if (iterator == 0)
+                {
+                    beforeKey = element.Key;
+                    iterator++;
+                    continue;
+                }
+
+                if (tempHeight <= heightRez)
+                {
+                    tempHeight += Math.Abs(element.Key - beforeKey);
+                    beforeKey = element.Key;
+                    newSortDic.Add(element.Key, element.Value);
+                    iterator++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return newSortDic;
         }
 
         private void SetVolumesByCoeff(ref Volume volume, ref List<double> distancesZ, double fromMeter, double toMeter, double coeff)

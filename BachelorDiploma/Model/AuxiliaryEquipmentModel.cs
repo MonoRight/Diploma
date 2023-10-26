@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace BachelorDiploma.Model
 {
-    public class AuxiliaryEquipmentModel :INotifyPropertyChanged
+    public class AuxiliaryEquipmentModel : INotifyPropertyChanged
     {
         private string name;
         private string type;
@@ -16,10 +11,7 @@ namespace BachelorDiploma.Model
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
+            get => name;
             set
             {
                 if (name == value)
@@ -32,10 +24,7 @@ namespace BachelorDiploma.Model
         }
         public string Type
         {
-            get
-            {
-                return type;
-            }
+            get => type;
             set
             {
                 if (type == value)
@@ -48,13 +37,10 @@ namespace BachelorDiploma.Model
         }
         public string SerialNumber
         {
-            get
-            {
-                return serialNumber;
-            }
+            get => serialNumber;
             set
             {
-                if(serialNumber == value)
+                if (serialNumber == value)
                 {
                     return;
                 }
@@ -64,10 +50,7 @@ namespace BachelorDiploma.Model
         }
         public string SertificateNumber
         {
-            get
-            {
-                return sertificateNumber;
-            }
+            get => sertificateNumber;
             set
             {
                 if (sertificateNumber == value)

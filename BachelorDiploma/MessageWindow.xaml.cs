@@ -19,9 +19,10 @@ namespace BachelorDiploma
     /// </summary>
     public partial class MessageWindow : Window
     {
-        public MessageWindow(string message)
+        public MessageWindow(string name, string message)
         {
             InitializeComponent();
+            NameTextBlock.Text = name;
             ErrorMessageTextBlock.Text = message;
         }
 

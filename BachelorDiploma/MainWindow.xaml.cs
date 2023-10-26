@@ -4,20 +4,10 @@ using BachelorDiploma.RAMManagement;
 using Microsoft.Win32;
 using Notifications.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 using BachelorDiploma.Model;
 using BLL.Enums;
@@ -32,13 +22,12 @@ namespace BachelorDiploma
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CalculationResult calculationResult;
         public MainWindow()
         {
             InitializeComponent();
 
-            Notification.Show("Recommended to have 8GB of RAM",
-                "Since this program performs a lot of mathematical operations, the amount of RAM affects the results.",
+            Notification.Show("Рекомендується мати 8 Гб оперативної пам'яті",
+                "Оскільки ця програма виконує багато математичних операцій і зберігає результати, обсяг оперативної пам'яті впливає на результати.",
                 NotificationType.Information,
                 0, 0, 10);
 
@@ -164,60 +153,176 @@ namespace BachelorDiploma
                     }
                     catch(OverflowException)
                     {
-                        MessageWindow messageWindow = new MessageWindow("Введене число виходить за рамки діапазону типу даних! Зменшіть його розмір!");
+                        MessageWindow messageWindow = new MessageWindow("Помилка", "Введене число виходить за рамки діапазону типу даних! Зменшіть його розмір!");
                         messageWindow.Show();
                         return;
                     }
                     catch(FormatException)
                     {
-                        MessageWindow messageWindow = new MessageWindow("Числові дані введені не вірно!");
+                        MessageWindow messageWindow = new MessageWindow("Помилка",  "Числові дані введені не вірно!");
                         messageWindow.Show();
                         return;
                     }
                     InformationModelDto infoModel = new InformationModelDto(name, nominalVolume, fillingHeight, deathHeight, tankType, algorithmHullType, temperature,
                                    linearCoeffTemp, maxDistBetweenPoints, maxDepth, zeroPosition, correctiveCoeff, fromCorrectiveCoeff, toCorrectiveCoeff);
-                    MainCalculation mainCalculation = new MainCalculation(infoModel, FileConnectionString.ConnectionString);
+                    AdditionalTablesModelDto additionalTablesModelDto = FillAdditionalTables();
+                    MainCalculation mainCalculation = new MainCalculation(infoModel, additionalTablesModelDto, FileConnectionString.ConnectionString);
 
                     await Task.Run(() =>
                     {
                         try
                         {
-                            calculationResult = mainCalculation.Calculate();
+                            mainCalculation.Calculate();
                             GC.Collect();
-                            MessageBox.Show(calculationResult.Volume);
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                MessageWindow messageWindow = new MessageWindow("Результат обчислення", "Об'єм резервуару: " + mainCalculation.CalculationResult.Volume + "м³");
+                                messageWindow.Show();
+                            });
+                            
                             Notification.Show("Розрахунки завершено",
-                                            "Перевірте вкладку \"Результати\"",
+                                            "Перевірте вкладку \"Результати\" і згенерований документ повірки",
                                             NotificationType.Success,
                                             0, 0, 60);
                         }
                         catch (WrongFileStructureException)
                         {
-                            MessageWindow messageWindow = new MessageWindow("Структура файлу не вірна!");
+                            MessageWindow messageWindow = new MessageWindow("Помилка", "Структура файлу не вірна!");
                             messageWindow.Show();
                         }
                         catch (GrahamScanConvexHullException)
                         {
-                            MessageWindow messageWindow = new MessageWindow("Помилка роботи алгоритму Грехема!");
+                            MessageWindow messageWindow = new MessageWindow("Помилка", "Помилка роботи алгоритму Грехема!");
                             messageWindow.Show();
                         }
                         catch(Exception exc)
                         {
-                            MessageWindow messageWindow = new MessageWindow(exc.ToString());
+                            MessageWindow messageWindow = new MessageWindow("Помилка", exc.ToString());
                             messageWindow.Show();
                         }
                     });
                 }
                 else
                 {
-                    MessageWindow messageWindow = new MessageWindow("Всі поля повинні бути заповнені!");
+                    MessageWindow messageWindow = new MessageWindow("Помилка", "Всі поля повинні бути заповнені!");
                     messageWindow.Show();
                 }
             }
             else
             {
-                MessageWindow messageWindow = new MessageWindow("Файл відсутній!");
+                MessageWindow messageWindow = new MessageWindow("Помилка", "Файл відсутній!");
                 messageWindow.Show();
             }
+        }
+
+        private AdditionalTablesModelDto FillAdditionalTables()
+        {
+            AdditionalTablesModelDto tablesModelDto = new AdditionalTablesModelDto();
+
+            tablesModelDto.T1RegNumDoc = T1RegNumDocTextBox.Text;
+            tablesModelDto.T1RegDate = T1RegDateTextBox.Text;
+            tablesModelDto.T1CalibrateDate = T1CalibrateDateTextBox.Text;
+            tablesModelDto.T1RezType = T1RezTypeTextBox.Text;
+            tablesModelDto.T1RezNumber = T1RezNumberTextBox.Text;
+            tablesModelDto.T1Temperature = T1TemperatureTextBox.Text;
+            tablesModelDto.T1AtmPressure = T1AtmPressureTextBox.Text;
+            tablesModelDto.T1MethodPoznaka = T1MethodPoznakaTextBox.Text;
+            tablesModelDto.T1MethodName = T1MethodNameTextBox.Text;
+            tablesModelDto.T1MethodOrganization = T1MethodOrganizationTextBox.Text;
+
+            tablesModelDto.T1_1Name = T1_1NameTextBox.Text;
+            tablesModelDto.T1_1Type = T1_1TypeTextBox.Text;
+            tablesModelDto.T1_1ServiceNum = T1_1ServiceNumTextBox.Text;
+            tablesModelDto.T1_1NumSvidocDovidka = T1_1NumSvidocDovidkaTextBox.Text;
+            tablesModelDto.T1_1CalibrateDate = T1_1CalibrateDateTextBox.Text;
+            tablesModelDto.T1_1MainParameters = T1_1MainParametersTextBox.Text;
+
+            tablesModelDto.T2_1Xb = T2_1XbTextBox.Text;
+            tablesModelDto.T2_1Yb = T2_1YbTextBox.Text;
+            tablesModelDto.T2_1BaseHeightRez = T2_1BaseHeightRezTextBox.Text;
+            tablesModelDto.T2_1BaseHeightRivnemera = T2_1BaseHeightRivnemeraTextBox.Text;
+
+            tablesModelDto.T2_2Name = T2_2NameTextBox.Text;
+            tablesModelDto.T2_2Gustina = T2_2GustinaTextBox.Text;
+            tablesModelDto.T2_2Riven = T2_2RivenTextBox.Text;
+            tablesModelDto.T2_2Tisk = T2_2TiskTextBox.Text;
+            tablesModelDto.T2_2SeverdnyaGustina = T2_2SeverdnyaGustinaTextBox.Text;
+
+            tablesModelDto.T2_3NekontrPorojnini = T2_3NekontrPorojniniTextBox.Text;
+            tablesModelDto.T2_3NizyVerhy = T2_3NizyVerhyTextBox.Text;
+            tablesModelDto.T2_3Granichna = T2_3GranichnaTextBox.Text;
+            tablesModelDto.T2_3Temperature = T2_3TemperatureTextBox.Text;
+
+            tablesModelDto.T2_4CilindrTovshinaStinkiZnachenya = T2_4CilindrTovshinaStinkiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4CilindrTovshinaStinkiGranici = T2_4CilindrTovshinaStinkiGraniciTextBox.Text;
+            tablesModelDto.T2_4CilindrTovshinaSharuFarbiZnachenya = T2_4CilindrTovshinaSharuFarbiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4CilindrTovshinaSharuFarbiGranici = T2_4CilindrTovshinaSharuFarbiGraniciTextBox.Text;
+            tablesModelDto.T2_4CilindrFormElement = T2_4CilindrFormElementTextBox.Text;
+
+            tablesModelDto.T2_4PerednyeDnisheTovshinaStinkiZnachenya = T2_4PerednyeDnisheTovshinaStinkiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4PerednyeDnisheTovshinaStinkiGranici = T2_4PerednyeDnisheTovshinaStinkiGraniciTextBox.Text;
+            tablesModelDto.T2_4PerednyeDnisheTovshinaSharuFarbiZnachenya = T2_4PerednyeDnisheTovshinaSharuFarbiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4PerednyeDnisheTovshinaSharuFarbiGranici = T2_4PerednyeDnisheTovshinaSharuFarbiGraniciTextBox.Text;
+            tablesModelDto.T2_4PerednyeDnisheFormElement = T2_4PerednyeDnisheFormElementTextBox.Text;
+
+            tablesModelDto.T2_4ZadnyeDnisheTovshinaStinkiZnachenya = T2_4ZadnyeDnisheTovshinaStinkiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4ZadnyeDnisheTovshinaStinkiGranici = T2_4ZadnyeDnisheTovshinaStinkiGraniciTextBox.Text;
+            tablesModelDto.T2_4ZadnyeDnisheTovshinaSharuFarbiZnachenya = T2_4ZadnyeDnisheTovshinaSharuFarbiZnachenyaTextBox.Text;
+            tablesModelDto.T2_4ZadnyeDnisheTovshinaSharuFarbiGranici = T2_4ZadnyeDnisheTovshinaSharuFarbiGraniciTextBox.Text;
+            tablesModelDto.T2_4ZadnyeDnisheFormElement = T2_4ZadnyeDnisheFormElementTextBox.Text;
+
+            tablesModelDto.T2_5_1Name = T2_5_1NameTextBox.Text;
+            tablesModelDto.T2_5_1GustinaRidini = T2_5_1GustinaRidiniTextBox.Text;
+            tablesModelDto.T2_5_1KoeffObem = T2_5_1KoeffObemTextBox.Text;
+            tablesModelDto.T2_5_1KoeffStisnennya = T2_5_1KoeffStisnennyaTextBox.Text;
+            tablesModelDto.T2_5_1KoeffLiniynogo = T2_5_1KoeffLiniynogoTextBox.Text;
+            
+            tablesModelDto.T2_5_2Number = T2_5_2NumberTextBox.Text;
+            tablesModelDto.T2_5_2DozovaMist = T2_5_2DozovaMistTextBox.Text;
+            tablesModelDto.T2_5_2TemperatureInRez = T2_5_2TemperatureInRezTextBox.Text;
+            tablesModelDto.T2_5_2TemperatureLichilnick = T2_5_2TemperatureLichilnickTextBox.Text;
+            tablesModelDto.T2_5_2RivenRidini = T2_5_2RivenRidiniTextBox.Text;
+            tablesModelDto.T2_5_2NadlishkoviyTisk = T2_5_2NadlishkoviyTiskTextBox.Text;
+            
+            tablesModelDto.T2_6Type = T2_6TypeTextBox.Text;
+            tablesModelDto.T2_6Height = T2_6HeightTextBox.Text;
+            tablesModelDto.T2_6Lenght = T2_6LenghtTextBox.Text;
+            tablesModelDto.T2_6Diameter = T2_6DiameterTextBox.Text;
+            tablesModelDto.T2_6KutNahily = T2_6KutNahilyTextBox.Text;
+            tablesModelDto.T2_6Obem = T2_6ObemTextBox.Text;
+            tablesModelDto.T2_6AbsoluteNijnyaMeja = T2_6AbsoluteNijnyaMejaTextBox.Text;
+            tablesModelDto.T2_6AbsoluteVerhnyaMeja = T2_6AbsoluteVerhnyaMejaTextBox.Text;
+            
+            tablesModelDto.T3_2KilkistShariv = T3_2KilkistSharivTextBox.Text;
+            tablesModelDto.T3_2KilkistVerticalPeretiniv = T3_2KilkistVerticalPeretinivTextBox.Text;
+            
+            tablesModelDto.GradPriznachenya = GradPriznachenyaTextBox.Text;
+            tablesModelDto.GradOrganizaciaVlasnik = GradOrganizaciaVlasnikTextBox.Text;
+            tablesModelDto.GradMisceVstanovlenya = GradMisceVstanovlenyaTextBox.Text;
+            tablesModelDto.GradTypeRez = GradTypeRezTextBox.Text;
+            tablesModelDto.GradNominalMist = GradNominalMistTextBox.Text;
+            tablesModelDto.GradGraniciDopustimoiPohibki = GradGraniciDopustimoiPohibkiTextBox.Text;
+            tablesModelDto.GradBasovaVisota = GradBasovaVisotaTextBox.Text;
+            tablesModelDto.GradGranichnaVisotaNapovnenya = GradGranichnaVisotaNapovnenyaTextBox.Text;
+            tablesModelDto.GradMistkistNaGranichnyVisoty = GradMistkistNaGranichnyVisotyTextBox.Text;
+            tablesModelDto.GradDilyankyNizche = GradDilyankyNizcheTextBox.Text;
+            tablesModelDto.GradMistkistMertvoiPoroznini = GradMistkistMertvoiPorozniniTextBox.Text;
+            tablesModelDto.GradDataProvedenyaPovirki = GradDataProvedenyaPovirkiTextBox.Text;
+            tablesModelDto.GradDataChergovoiPovirki = GradDataChergovoiPovirkiTextBox.Text;
+            tablesModelDto.GradVsogoArkushiv = GradVsogoArkushivTextBox.Text;
+
+            foreach(AuxiliaryEquipmentModel auxEq in AdditionalTablesModel.T1_2DopomijneObladnannya)
+            {
+                tablesModelDto.T1_2DopomijneObladnannya.Add(new AuxiliaryEquipmentModelDto()
+                {
+                    Name = auxEq.Name,
+                    Type = auxEq.Type,
+                    SerialNumber = auxEq.SerialNumber,
+                    SertificateNumber = auxEq.SertificateNumber
+                });
+            }
+
+            return tablesModelDto;
         }
     }
 }

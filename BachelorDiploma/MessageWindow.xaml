@@ -22,7 +22,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <TextBlock Text="Помилка"
+            <TextBlock 
+                           x:Name="NameTextBlock"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Foreground="White"

@@ -26,15 +26,15 @@ namespace BachelorDiploma.RAMManagement
 
             if (totalRam <= 3.5)
             {
-                Notification.Show("Capacity of the RAM:", $"Total: {totalRam} GB\nBusy: {busyRam} GB\nFree: {freeRam} GB\n\nNot enough total RAM memory for the program to run", NotificationType.Error, 0, 0, 15);
+                Notification.Show("Ємність оперативної пам'яті:", $"Всього: {totalRam} Гб\nЗайнято: {busyRam} Гб\nВільно: {freeRam} Гб\n\nНедостатньо оперативної пам’яті для роботи програми", NotificationType.Error, 0, 0, 15);
             }
             else if(totalRam > 3.5 && freeRam < 2)
             {
-                Notification.Show("Capacity of the RAM:", $"Total: {totalRam} GB\nBusy: {busyRam} GB\nFree: {freeRam} GB\n\nNot enough free RAM memory for the program to run. Please close unused applications", NotificationType.Warning, 0, 0, 15);
+                Notification.Show("Ємність оперативної пам'яті:", $"Всього: {totalRam} Гб\nЗайнято: {busyRam} Гб\nВільно: {freeRam} Гб\n\nНедостатньо вільної пам'яті RAM для роботи програми. Закрийте програми, які не використовуються", NotificationType.Warning, 0, 0, 15);
             }
             else
             {
-                Notification.Show("Capacity of the RAM:", $"Total: {totalRam} GB\nBusy: {busyRam} GB\nFree: {freeRam} GB\n\nThe amount of free RAM memory makes possible to use the application correctly", NotificationType.Success, 0, 0, 15);
+                Notification.Show("Ємність оперативної пам'яті:", $"Всього: {totalRam} Гб\nЗайнято: {busyRam} Гб\nВільно: {freeRam} Гб\n\nОбсяг вільної оперативної пам'яті дозволяє коректно використовувати програму", NotificationType.Success, 0, 0, 15);
             }
         }
     }

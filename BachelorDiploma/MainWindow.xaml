@@ -742,51 +742,51 @@
                                                     BorderBrush="Black" 
                                                     BorderThickness="0.3">
                                                 <Grid Height="135">
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Назва"
                                                    FontSize="12"
                                                        Margin="20,27,0,81" RenderTransformOrigin="0.482,0.815"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                      Height="30"
                                                      Margin="10,84,595,21"
                                                      x:Name="T2_5_1NameTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Густина рідини,&#xA;що повіряють, кг/м³"
                                                    FontSize="12"
                                                        Margin="85,16,0,75" Height="44"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                     Height="30"
                                                     Margin="85,84,451,21"
                                                     x:Name="T2_5_1GustinaRidiniTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Коєфіцієнт об'ємного&#xA;розширення, 10¯³·1/°С"
                                                    FontSize="12"
                                                        Margin="227,16,0,75" Height="44"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                     Height="30"
                                                     Margin="227,84,302,21"
                                                     x:Name="T2_5_1KoeffObemTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Коєфіціент стиснення&#xA;рідини, 10¯³·1/°С"
                                                    FontSize="12"
                                                        Margin="376,16,0,75" Height="44"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                     Height="30"
                                                     Margin="376,84,158,21"
                                                     x:Name="T2_5_1KoeffStisnennyaTextBox"/>
 
-                                                <Label Style="{StaticResource LabelTheme}" 
+                                                    <Label Style="{StaticResource LabelTheme}" 
                                                    Content="Коєфіціент лінійного&#xA;розширення&#xA;резервуара,&#xA;10¯³1/°С"
                                                    FontSize="12"
                                                        Margin="520,10,0,40" Height="85"/>
-                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                    <TextBox Style="{StaticResource TextBoxTheme}"
                                                     Height="30"
                                                     Margin="520,84,10,21"
                                                     x:Name="T2_5_1KoeffLiniynogoTextBox"/>
-                                            </Grid>
+                                                </Grid>
                                             </Border>
 
                                             <Label Style="{StaticResource LabelTheme}" 
@@ -1116,10 +1116,7 @@
                                                 </Grid>
                                             </Border>
                                         </StackPanel>
-
-
                                     </ScrollViewer>
-
                                 </Border>
                             </Border>
                         </Grid>
@@ -1208,13 +1205,15 @@
                             </Border>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Статистика"
+                    <TabItem Header="Результати"
                              Style="{StaticResource TabItemTheme}">
                         <Grid>
-                            <Border Style="{StaticResource TabControlMainBorderTheme}" >
-                                <ScrollBar Width="18">
-
-                                </ScrollBar>
+                            <Border Style="{StaticResource TabControlMainBorderTheme}">
+                                <Border Background="#EBF9DF"
+                                        Margin="10,10,10,10"
+                                        CornerRadius="10">
+                                    
+                                </Border>
                             </Border>
                         </Grid>
                     </TabItem>
