@@ -1,8 +1,8 @@
 ﻿using BachelorDiploma.NotificationManagement;
+using Notifications.Wpf;
 using System;
 using System.Linq;
 using System.Management;
-using Notifications.Wpf;
 
 namespace BachelorDiploma.RAMManagement
 {
@@ -28,7 +28,7 @@ namespace BachelorDiploma.RAMManagement
             {
                 Notification.Show("Ємність оперативної пам'яті:", $"Всього: {totalRam} Гб\nЗайнято: {busyRam} Гб\nВільно: {freeRam} Гб\n\nНедостатньо оперативної пам’яті для роботи програми", NotificationType.Error, 0, 0, 15);
             }
-            else if(totalRam > 3.5 && freeRam < 2)
+            else if (totalRam > 3.5 && freeRam < 2)
             {
                 Notification.Show("Ємність оперативної пам'яті:", $"Всього: {totalRam} Гб\nЗайнято: {busyRam} Гб\nВільно: {freeRam} Гб\n\nНедостатньо вільної пам'яті RAM для роботи програми. Закрийте програми, які не використовуються", NotificationType.Warning, 0, 0, 15);
             }

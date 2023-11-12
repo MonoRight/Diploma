@@ -1,10 +1,5 @@
 ﻿using BLL.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BachelorDiploma.Model
 {
@@ -37,7 +32,7 @@ namespace BachelorDiploma.Model
         [Required]
         public double ToCorrectiveCoeff { get; set; }
 
-        public InformationModel(string name, double nominalVolume, double fillingHeight, double deathHeight, 
+        public InformationModel(string name, double nominalVolume, double fillingHeight, double deathHeight,
             TankType tankType, double temperature, double linearTempCoeff, double maxDistBetweenPoints,
             double maxDepth, double zeroPosition, double correctiveCoeff, double fromCorrectiveCoeff, double toCorrectiveCoeff)
         {

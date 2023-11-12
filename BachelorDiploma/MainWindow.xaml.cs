@@ -1,19 +1,21 @@
 ﻿using BachelorDiploma.FileConnection;
+using BachelorDiploma.Model;
 using BachelorDiploma.NotificationManagement;
 using BachelorDiploma.RAMManagement;
+using BLL;
+using BLL.DTO;
+using BLL.Enums;
+using BLL.Exceptions;
 using Microsoft.Win32;
 using Notifications.Wpf;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.ComponentModel;
-using BachelorDiploma.Model;
-using BLL.Enums;
-using BLL.DTO;
-using BLL;
-using BLL.Exceptions;
 
 namespace BachelorDiploma
 {
@@ -148,18 +150,18 @@ namespace BachelorDiploma
                             algorithmHullType = AlgorithmHullType.Andrew;
                         else if (GrahamHullTypeComboBoxItem.IsSelected)
                             algorithmHullType = AlgorithmHullType.Graham;
-                        else 
+                        else
                             algorithmHullType = AlgorithmHullType.Andrew;
                     }
-                    catch(OverflowException)
+                    catch (OverflowException)
                     {
                         MessageWindow messageWindow = new MessageWindow("Помилка", "Введене число виходить за рамки діапазону типу даних! Зменшіть його розмір!");
                         messageWindow.Show();
                         return;
                     }
-                    catch(FormatException)
+                    catch (FormatException)
                     {
-                        MessageWindow messageWindow = new MessageWindow("Помилка",  "Числові дані введені не вірно!");
+                        MessageWindow messageWindow = new MessageWindow("Помилка", "Числові дані введені не вірно!");
                         messageWindow.Show();
                         return;
                     }
@@ -167,23 +169,29 @@ namespace BachelorDiploma
                                    linearCoeffTemp, maxDistBetweenPoints, maxDepth, zeroPosition, correctiveCoeff, fromCorrectiveCoeff, toCorrectiveCoeff);
                     AdditionalTablesModelDto additionalTablesModelDto = FillAdditionalTables();
                     MainCalculation mainCalculation = new MainCalculation(infoModel, additionalTablesModelDto, FileConnectionString.ConnectionString);
-
+                    Stopwatch watch;
                     await Task.Run(() =>
                     {
                         try
                         {
+                            watch = Stopwatch.StartNew();
                             mainCalculation.Calculate();
                             GC.Collect();
-                            Application.Current.Dispatcher.Invoke(() =>
-                            {
-                                MessageWindow messageWindow = new MessageWindow("Результат обчислення", "Об'єм резервуару: " + mainCalculation.CalculationResult.Volume + "м³");
-                                messageWindow.Show();
-                            });
-                            
+                            watch.Stop();
+
                             Notification.Show("Розрахунки завершено",
                                             "Перевірте вкладку \"Результати\" і згенерований документ повірки",
                                             NotificationType.Success,
                                             0, 0, 60);
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                MessageWindow messageWindow = new MessageWindow("Результат обчислення", "Об'єм резервуару: " + mainCalculation.CalculationResult.Volume + "м³");
+                                messageWindow.Show();
+                                FillResultSection(infoModel, watch, mainCalculation);
+                                WriteResltsToTxtFile(infoModel, watch, mainCalculation);
+                                ExcelTableService excelTableService = new ExcelTableService(infoModel, additionalTablesModelDto, mainCalculation.CalculationResult);
+                                excelTableService.FillExcelFile();
+                            });
                         }
                         catch (WrongFileStructureException)
                         {
@@ -195,7 +203,12 @@ namespace BachelorDiploma
                             MessageWindow messageWindow = new MessageWindow("Помилка", "Помилка роботи алгоритму Грехема!");
                             messageWindow.Show();
                         }
-                        catch(Exception exc)
+                        catch (FormatException)
+                        {
+                            MessageWindow messageWindow = new MessageWindow("Помилка", "Формат введених даних не вірний!");
+                            messageWindow.Show();
+                        }
+                        catch (Exception exc)
                         {
                             MessageWindow messageWindow = new MessageWindow("Помилка", exc.ToString());
                             messageWindow.Show();
@@ -213,6 +226,75 @@ namespace BachelorDiploma
                 MessageWindow messageWindow = new MessageWindow("Помилка", "Файл відсутній!");
                 messageWindow.Show();
             }
+        }
+
+        private void WriteResltsToTxtFile(InformationModelDto infoModel, Stopwatch watch, MainCalculation mainCalculation)
+        {
+            string directoryPath = Environment.CurrentDirectory + "\\Цистерни";
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            using (StreamWriter sw = new StreamWriter(directoryPath + "/" + infoModel.Name + ".txt", true, System.Text.Encoding.Default))
+            {
+                string tankType;
+                string convexHullAlg;
+                if(infoModel.TankType == TankType.Horizontal)
+                {
+                    tankType = "Горизонтальний";
+                }
+                else
+                {
+                    tankType = "Вертикальний";
+                }
+
+                if(infoModel.AlgorithmHullType == AlgorithmHullType.Andrew)
+                {
+                    convexHullAlg = "Ендрю";
+                }
+                else if(infoModel.AlgorithmHullType == AlgorithmHullType.Graham)
+                {
+                    convexHullAlg = "Скан Грехема";
+                }
+
+                sw.WriteLine($"\nДата: { DateTime.Now} " +
+                    $"\nНомінальний об'єм (м3): {infoModel.NominalVolume} " +
+                    $"\nФактичний об'єм (м3): {mainCalculation.CalculationResult.Volume} " +
+                    $"\nГранична абсолютна висота наповнення (м): {infoModel.FillingHeight} " +
+                    $"\nВисота мертвого залишку(м): {infoModel.DeathHeigth} " +
+                    $"\nТемпература під час проведення вимірювань (°С): {infoModel.Temperature} " +
+                    $"\nЛінійний температурний коефіцієнт розширення матеріалу резервуара (1/°C): {infoModel.LinearTempCoeff} " +
+                    $"\nМаксимальна відстань між точками зовнішньої оболонки перерізу (м): {infoModel.MaxDistBetweenPoints} " +
+                    $"\nМаксимальна глибина увігнутостей (м): {infoModel.MaxDepth} " +
+                    $"\nПозиція нуля (м): {infoModel.ZeroPosition} " +
+                    $"\nКоригуючий коефіцієнт: {infoModel.CorrectiveCoeff} " +
+                    $"\nВисота нижньої точки з якої починається коригування значення об'єму (м): {infoModel.FromCorrectiveCoeff} " +
+                    $"\nВисота верхньої точки з якої починається коригування значення об'єму (м): {infoModel.ToCorrectiveCoeff} " +
+                    $"\nАлоритм пошуку мінімальної опуклої оболонки: {convexHullAlg} " +
+                    $"\nТип резервуару: {tankType} " +
+                    $"\nВитрачений час на обчислення (хв): {((double)((double)(watch.ElapsedMilliseconds / 1000) / 60)).ToString()}" +
+                    $"\nПохибка: {mainCalculation.CalculationResult.Fault}%\n");
+            }
+        }
+
+        private void FillResultSection(InformationModelDto infoModel, Stopwatch watch, MainCalculation mainCalculation)
+        {
+            ResDateTextBox.Text = DateTime.Now.ToString();
+            ResNominalVolumeTextBox.Text = infoModel.NominalVolume.ToString();
+            ResFactVolumeTextBox.Text = mainCalculation.CalculationResult.Volume.ToString();
+            ResGranichTextBox.Text = infoModel.FillingHeight.ToString();
+            ResHeighDeathTextBox.Text = infoModel.DeathHeigth.ToString();
+            ResTempTextBox.Text = infoModel.Temperature.ToString();
+            ResLinearTempCoefTextBox.Text = infoModel.LinearTempCoeff.ToString();
+            ResMaxVidstanTextBox.Text = infoModel.MaxDistBetweenPoints.ToString();
+            ResMaxGlibinaTextBox.Text = infoModel.MaxDepth.ToString();
+            ResZeroPositionTextBox.Text = infoModel.ZeroPosition.ToString();
+            ResCorCoeffTextBox.Text = infoModel.CorrectiveCoeff.ToString();
+            ResVisotaNizTextBox.Text = infoModel.FromCorrectiveCoeff.ToString();
+            ResVisotaVerhTextBox.Text = infoModel.ToCorrectiveCoeff.ToString();
+            ResTimeTextBox.Text = ((double)((double)(watch.ElapsedMilliseconds / 1000) / 60)).ToString();
+            ResPohibkaTextBox.Text = mainCalculation.CalculationResult.Fault.ToString() + "%";
         }
 
         private AdditionalTablesModelDto FillAdditionalTables()
@@ -276,14 +358,14 @@ namespace BachelorDiploma
             tablesModelDto.T2_5_1KoeffObem = T2_5_1KoeffObemTextBox.Text;
             tablesModelDto.T2_5_1KoeffStisnennya = T2_5_1KoeffStisnennyaTextBox.Text;
             tablesModelDto.T2_5_1KoeffLiniynogo = T2_5_1KoeffLiniynogoTextBox.Text;
-            
+
             tablesModelDto.T2_5_2Number = T2_5_2NumberTextBox.Text;
             tablesModelDto.T2_5_2DozovaMist = T2_5_2DozovaMistTextBox.Text;
             tablesModelDto.T2_5_2TemperatureInRez = T2_5_2TemperatureInRezTextBox.Text;
             tablesModelDto.T2_5_2TemperatureLichilnick = T2_5_2TemperatureLichilnickTextBox.Text;
             tablesModelDto.T2_5_2RivenRidini = T2_5_2RivenRidiniTextBox.Text;
             tablesModelDto.T2_5_2NadlishkoviyTisk = T2_5_2NadlishkoviyTiskTextBox.Text;
-            
+
             tablesModelDto.T2_6Type = T2_6TypeTextBox.Text;
             tablesModelDto.T2_6Height = T2_6HeightTextBox.Text;
             tablesModelDto.T2_6Lenght = T2_6LenghtTextBox.Text;
@@ -292,10 +374,10 @@ namespace BachelorDiploma
             tablesModelDto.T2_6Obem = T2_6ObemTextBox.Text;
             tablesModelDto.T2_6AbsoluteNijnyaMeja = T2_6AbsoluteNijnyaMejaTextBox.Text;
             tablesModelDto.T2_6AbsoluteVerhnyaMeja = T2_6AbsoluteVerhnyaMejaTextBox.Text;
-            
+
             tablesModelDto.T3_2KilkistShariv = T3_2KilkistSharivTextBox.Text;
             tablesModelDto.T3_2KilkistVerticalPeretiniv = T3_2KilkistVerticalPeretinivTextBox.Text;
-            
+
             tablesModelDto.GradPriznachenya = GradPriznachenyaTextBox.Text;
             tablesModelDto.GradOrganizaciaVlasnik = GradOrganizaciaVlasnikTextBox.Text;
             tablesModelDto.GradMisceVstanovlenya = GradMisceVstanovlenyaTextBox.Text;
@@ -311,7 +393,7 @@ namespace BachelorDiploma
             tablesModelDto.GradDataChergovoiPovirki = GradDataChergovoiPovirkiTextBox.Text;
             tablesModelDto.GradVsogoArkushiv = GradVsogoArkushivTextBox.Text;
 
-            foreach(AuxiliaryEquipmentModel auxEq in AdditionalTablesModel.T1_2DopomijneObladnannya)
+            foreach (AuxiliaryEquipmentModel auxEq in AdditionalTablesModel.T1_2DopomijneObladnannya)
             {
                 tablesModelDto.T1_2DopomijneObladnannya.Add(new AuxiliaryEquipmentModelDto()
                 {

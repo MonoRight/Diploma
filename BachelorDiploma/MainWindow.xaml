@@ -1212,7 +1212,162 @@
                                 <Border Background="#EBF9DF"
                                         Margin="10,10,10,10"
                                         CornerRadius="10">
-                                    
+                                    <ScrollViewer Margin="0,2,2,2">
+                                        <StackPanel>
+                                            <Grid>
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Дата"
+                                                   FontSize="12"
+                                                       Margin="42,18,0,464" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,10,77,459"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResDateTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Номінальний об'єм (м³)"
+                                                   FontSize="12"
+                                                       Margin="42,58,0,424" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,50,77,419"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResNominalVolumeTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Фактичний об'єм (м³)"
+                                                   FontSize="12"
+                                                       Margin="42,98,0,384" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,90,77,373"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResFactVolumeTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Гранична абсолютна висота наповнення (м)"
+                                                   FontSize="12"
+                                                       Margin="42,138,0,344" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,130,77,331"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResGranichTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Висота 'мертвого' залишку (м)"
+                                                   FontSize="12"
+                                                       Margin="42,176,0,306" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,170,77,296"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResHeighDeathTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Температура під час проведення вимірювань (°С)"
+                                                   FontSize="12"
+                                                       Margin="42,214,0,268" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,210,77,261"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResTempTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Лінійний температурний коефіцієнт розширення&#xA;матеріалу резервуара (1/°C)"
+                                                   FontSize="12"
+                                                       Margin="42,250,0,217" Height="41"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,256,77,222"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResLinearTempCoefTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Максимальна відстань між точками зовнішньої&#xA;оболонки перерізу (м)"
+                                                   FontSize="12"
+                                                       Margin="42,291,0,176" Height="41"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,296,77,182"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResMaxVidstanTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Максимальна глибина увігнутостей (м)"
+                                                   FontSize="12"
+                                                       Margin="42,341,0,141" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,341,77,137"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResMaxGlibinaTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Позиція нуля (м)"
+                                                   FontSize="12"
+                                                       Margin="42,383,0,99" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,383,77,95"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResZeroPositionTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Коригуючий коефіцієнт"
+                                                   FontSize="12"
+                                                       Margin="42,427,0,55" Height="26"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,427,77,51"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResCorCoeffTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Висота нижньої точки з якої починається&#xA;коригування значення об'єму (м)"
+                                                   FontSize="12"
+                                                       Margin="42,458,0,10" Height="40"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,468,77,10"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResVisotaNizTextBox"/>
+                                            </Grid>
+                                            <Grid>
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Висота верхньої точки з якої починається&#xA;коригування значення об'єму (м)"
+                                                   FontSize="12"
+                                                       Margin="42,-6,0,76" Height="42"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,0,77,82"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResVisotaVerhTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Витрачений час на обчислення (хв)"
+                                                   FontSize="12"
+                                                       Margin="42,39,0,42" Height="31"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,40,77,42"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResTimeTextBox"/>
+
+                                                <Label Style="{StaticResource LabelTheme}" 
+                                                   Content="Похибка"
+                                                   FontSize="12"
+                                                       Margin="42,75,0,7" Height="30"/>
+                                                <TextBox Style="{StaticResource TextBoxTheme}"
+                                                     Height="30"
+                                                     Margin="361,75,77,7"
+                                                     IsReadOnly="True"
+                                                     x:Name="ResPohibkaTextBox"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </ScrollViewer>
                                 </Border>
                             </Border>
                         </Grid>

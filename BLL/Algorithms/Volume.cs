@@ -7,7 +7,7 @@ namespace BLL.Algorithms
     {
         public List<double> VolumesBetweenHulls { get; set; }
         public double TotalVolume { get; set; }
-       
+
         public void SetVolume(List<double> distances, List<double> squares, double linearTempCoeff)
         {
             VolumesBetweenHulls = new List<double>();
