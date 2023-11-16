@@ -38,7 +38,6 @@ namespace BLL
             double midHeight;
             List<Point> centralPereriz;
             Point centroidOfCentralPereriz = null;
-            List<double> listOfVolumesHorizontalCylindrPerSantimeter;
             double heightRez = _informationModel.FillingHeight + _informationModel.ZeroPosition;
             int kilkistShariv = Convert.ToInt32(_additionalTablesModelDto.T3_2KilkistShariv);
             int kilkistPereriziv = Convert.ToInt32(_additionalTablesModelDto.T3_2KilkistVerticalPeretiniv);
@@ -76,7 +75,7 @@ namespace BLL
                 double radius = heightRez / 2; //радіус циліндра (м)
                 Point centerOfCircleHorizontal = FindFarPointInPereriz(centroidOfCentralPereriz, centralPereriz); //центр першого кола (збоку найвіддаленіша точка в перерізі)
                 double lengthOfRez = DistanceBetweenPoints(centerOfCircleHorizontal, centroidOfCentralPereriz) * 2; //довжина циліндра
-                listOfVolumesHorizontalCylindrPerSantimeter = new List<double>();
+                CalculationResult.ListOfVolumesHorizontalCylindrPerSantimeter = new List<double>();
                 //double volume = Math.PI * radius * radius * lengthOfRez; //об'єм горизонтального циліндра
                 double s = Math.PI * radius * radius;
                 double stepRadianPerSantimetr = (360 * Math.PI / 180) / (heightRez * 100);
@@ -84,7 +83,7 @@ namespace BLL
                 for (int h = 0, i = 1; h < heightRez * 100; h++, i++)
                 {
                     double value = lengthOfRez * radius * radius * (stepRadianPerSantimetr * i - Math.Sin(stepRadianPerSantimetr * i)) / 2.0;
-                    listOfVolumesHorizontalCylindrPerSantimeter.Add(value);
+                    CalculationResult.ListOfVolumesHorizontalCylindrPerSantimeter.Add(value);
                 }
             }
 

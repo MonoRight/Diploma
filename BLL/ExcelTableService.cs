@@ -39,6 +39,7 @@ namespace BLL
             {
                 int rawCount = _calculationResult.VolumesBetweenHulls.Count / 100 + 2;
                 int columnCount = 12;
+                List<double> perSantimeterVolume = new List<double>();
                 //GradTable1
                 {
                     int i = 0;
@@ -122,6 +123,10 @@ namespace BLL
                                 }
                                 else
                                 {
+                                    if (j == 10)
+                                    {
+                                        perSantimeterVolume.Add(minVolumes[temp]);
+                                    }
                                     xlWorkSheet.Cells[i + 6, j + 1] = minVolumes[temp];
                                     temp++;
                                 }
@@ -257,20 +262,20 @@ namespace BLL
                                 }
                                 else//для горизонтального
                                 {
-                                    //xlWorkSheet.Cells[i + 30, 3] = Math.Abs((listOfVolumesHorizontalCylindrPerSantimeter.Last() - _calculationResult.Volume) / 45);
+                                    xlWorkSheet.Cells[i + 30, 3] = Math.Abs((_calculationResult.ListOfVolumesHorizontalCylindrPerSantimeter.Last() - _calculationResult.Volume) / 45);
                                 }
                             }
                             else
                             {
-                                //xlWorkSheet.Cells[i + 30, 2] = dataGridView1[10, i].Value;
+                                xlWorkSheet.Cells[i + 30, 2] = perSantimeterVolume[i - 1];
 
                                 if (_informationModel.TankType == TankType.Vertical)
                                 {
-                                    //xlWorkSheet.Cells[i + 30, 3] = Math.Abs((firstVolumeCilindr * level - Convert.ToDouble(dataGridView1[10, i].Value)) / 45);
+                                    xlWorkSheet.Cells[i + 30, 3] = Math.Abs((firstVolumeCilindr * level - Convert.ToDouble(perSantimeterVolume[i - 1])) / 45);
                                 }
                                 else//для горизонтального
                                 {
-                                    //xlWorkSheet.Cells[i + 30, 3] = Math.Abs((listOfVolumesHorizontalCylindrPerSantimeter[j] - Convert.ToDouble(dataGridView1[10, i].Value)) / 45);
+                                    xlWorkSheet.Cells[i + 30, 3] = Math.Abs((_calculationResult.ListOfVolumesHorizontalCylindrPerSantimeter[j] - Convert.ToDouble(perSantimeterVolume[i - 1])) / 45);
                                 }
                             }
                             level++;

@@ -178,20 +178,20 @@ namespace BachelorDiploma
                             mainCalculation.Calculate();
                             GC.Collect();
                             watch.Stop();
-
-                            Notification.Show("Розрахунки завершено",
-                                            "Перевірте вкладку \"Результати\" і згенерований документ повірки",
-                                            NotificationType.Success,
-                                            0, 0, 60);
+                
                             Application.Current.Dispatcher.Invoke(() =>
                             {
-                                MessageWindow messageWindow = new MessageWindow("Результат обчислення", "Об'єм резервуару: " + mainCalculation.CalculationResult.Volume + "м³");
-                                messageWindow.Show();
                                 FillResultSection(infoModel, watch, mainCalculation);
                                 WriteResltsToTxtFile(infoModel, watch, mainCalculation);
                                 ExcelTableService excelTableService = new ExcelTableService(infoModel, additionalTablesModelDto, mainCalculation.CalculationResult);
                                 excelTableService.FillExcelFile();
+                                MessageWindow messageWindow = new MessageWindow("Результат обчислення", "Об'єм резервуару: " + mainCalculation.CalculationResult.Volume + "м³");
+                                messageWindow.Show();
                             });
+                            Notification.Show("Розрахунки завершено",
+                                            "Перевірте вкладку \"Результати\" і згенерований документ повірки",
+                                            NotificationType.Success,
+                                            0, 0, 60);
                         }
                         catch (WrongFileStructureException)
                         {
@@ -239,7 +239,7 @@ namespace BachelorDiploma
             using (StreamWriter sw = new StreamWriter(directoryPath + "/" + infoModel.Name + ".txt", true, System.Text.Encoding.Default))
             {
                 string tankType;
-                string convexHullAlg;
+                string convexHullAlg = "";
                 if(infoModel.TankType == TankType.Horizontal)
                 {
                     tankType = "Горизонтальний";
@@ -271,7 +271,7 @@ namespace BachelorDiploma
                     $"\nКоригуючий коефіцієнт: {infoModel.CorrectiveCoeff} " +
                     $"\nВисота нижньої точки з якої починається коригування значення об'єму (м): {infoModel.FromCorrectiveCoeff} " +
                     $"\nВисота верхньої точки з якої починається коригування значення об'єму (м): {infoModel.ToCorrectiveCoeff} " +
-                    $"\nАлоритм пошуку мінімальної опуклої оболонки: {convexHullAlg} " +
+                    $"\nАлгоритм пошуку мінімальної опуклої оболонки: {convexHullAlg} " +
                     $"\nТип резервуару: {tankType} " +
                     $"\nВитрачений час на обчислення (хв): {((double)((double)(watch.ElapsedMilliseconds / 1000) / 60)).ToString()}" +
                     $"\nПохибка: {mainCalculation.CalculationResult.Fault}%\n");

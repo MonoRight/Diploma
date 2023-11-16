@@ -29,5 +29,7 @@ namespace BLL.DTO
 
         public List<Point> CentralPereriz { get; set; }
         public Point CentroidOfCentralPereriz { get; set; }
+
+        public List<double> ListOfVolumesHorizontalCylindrPerSantimeter { get; set; }
     }
 }
